@@ -99,24 +99,8 @@ catch(Exception $ex)
 	
 		<div class="well">
 			<ul class="itemListDetails">
-				<li>
-					<span class="tit_itemList"><?php echo JText::_('COM_KAJOO_ITEMCONTENT_CREATED');?></span> 
-					<?php 
-					// $created = new DateTime(JFactory::getDate($this->item->kaltura_video->createdAt));
-					$created = new DateTime(JFactory::getDate($this->item->kaltura_video->createdAt));
-					echo $created->format('d/m/Y H:i');
-					echo ' -- '.date('d/m/Y H:i', $this->item->kaltura_video->createdAt);
-					?>
-				</li>
-				<li>
-					<span class="tit_itemList"><?php echo JText::_('COM_KAJOO_ITEMCONTENT_UPDATED');?></span> 
-					<?php 
-					// $updated = new DateTime(JFactory::getDate($this->item->kaltura_video->updatedAt));
-					$updated = new DateTime(JFactory::getDate($this->item->kaltura_video->updatedAt));
-					echo $updated->format('d/m/Y H:i');
-					echo ' -- '.date('d/m/Y H:i', $this->item->kaltura_video->updatedAt);
-					?>
-				</li>
+				<li><span class="tit_itemList"><?php echo JText::_('COM_KAJOO_ITEMCONTENT_CREATED');?></span> <?php echo JFactory::getDate($this->item->kaltura_video->createdAt); ?></li>
+				<li><span class="tit_itemList"><?php echo JText::_('COM_KAJOO_ITEMCONTENT_UPDATED');?></span> <?php echo JFactory::getDate($this->item->kaltura_video->updatedAt); ?></li>
 				<li><span class="tit_itemList"><?php echo JText::_('COM_KAJOO_ITEMCONTENT_LENGTH');?></span> <?php echo KajooHelper::formatTime($this->item->kaltura_video->msDuration);?></li>
 				<li><span class="tit_itemList"><?php echo JText::_('COM_KAJOO_ITEMCONTENT_VIEWS');?></span> <?php echo $this->item->kaltura_video->views;?></li>
 				<li><span class="tit_itemList"><?php echo JText::_('COM_KAJOO_ITEMCONTENT_PLAYS');?></span> <?php echo $this->item->kaltura_video->plays;?></li>
