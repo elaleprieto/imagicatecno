@@ -11,19 +11,17 @@
 // no direct access
 defined('_JEXEC') or die;
 
-    $app = JFactory::getApplication('site');
-    $componentParams = $app->getParams('com_kajoo');
-    $link_titles= $componentParams->get('link_titles', 1); 
-    $link_images= $componentParams->get('link_images', 1); 
-    $show_fields= $componentParams->get('show_fields', 1); 
-    $show_partner= $componentParams->get('show_partner', 1); 
-    $maxsizedesc= $componentParams->get('maxsizedesc', 35); 
-    $show_duration= $componentParams->get('show_duration', 1); 
-    $scroll_on_reload= $componentParams->get('scroll_on_reload', 1); 
-
-
-    
+$app = JFactory::getApplication('site');
+$componentParams = $app->getParams('com_kajoo');
+$link_titles= $componentParams->get('link_titles', 1); 
+$link_images= $componentParams->get('link_images', 1); 
+$show_fields= $componentParams->get('show_fields', 1); 
+$show_partner= $componentParams->get('show_partner', 1); 
+$maxsizedesc= $componentParams->get('maxsizedesc', 35); 
+$show_duration= $componentParams->get('show_duration', 1); 
+$scroll_on_reload= $componentParams->get('scroll_on_reload', 1); 
 ?>
+
 <div class="kajooMainContent">
 	<?php if($this->items): ?>
 		<?php foreach ($this->items as $item) :?>
