@@ -125,28 +125,6 @@ class KajooModelTable extends JModelList {
 				break;
 		}
 		
-		//Type = video
-		// $filter->mediaTypeEqual = 1;
-		
-		# Type = audio
-		// $filter->mediaTypeEqual = 5;
-
-		# Type = images
-		// $filter->mediaTypeEqual = 2;
-
-		# Type = all
-		// $filter->idNotIn = 0;
-		
-		// JLog::add(JUri::getInstance($uri='SERVER'));
-		// JFactory::getApplication()->enqueueMessage(JUri::getInstance($uri='SERVER'));
-		
-		// $menu = JSite::getMenu();
-		// $alias = $menu->getActive()->alias;
-		// JError::raiseError(500,  $_SERVER["REQUEST_URI"]);
-		
-
-		
-
 		// Connect to Kaltura API
 		$PartnerInfo = KajooHelper::getPartnerInfo($partnerId);
 		$kClient = KajooHelper::getKalturaClient($PartnerInfo->partnerid, $PartnerInfo->administratorsecret, true,$PartnerInfo->url);
