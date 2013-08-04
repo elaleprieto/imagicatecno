@@ -168,7 +168,8 @@ class KajooHelper
 			$kClient = self::getKalturaClient($PartnerInfo->partnerid, $PartnerInfo->administratorsecret, true,$PartnerInfo->url);
 			
 			$filter = new KalturaMediaEntryFilter();
-			$filter->mediaTypeEqual = 1; //only sync videos
+			// $filter->mediaTypeEqual = 1; //only sync videos
+			$filter->idNotIn = 0; //not only sync videos
 			
 			try
 			{
