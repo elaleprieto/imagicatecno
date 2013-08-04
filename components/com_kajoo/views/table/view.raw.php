@@ -33,7 +33,6 @@ class KajooViewTable extends JViewLegacy
 		$this->pagination	= $this->get('Pagination');
         $this->params       = $app->getParams('com_kajoo');
 
-
 		// Check for errors.
 		if (count($errors = $this->get('Errors'))) {
 			JError::raiseError(500, implode("\n", $errors));
@@ -48,7 +47,6 @@ class KajooViewTable extends JViewLegacy
 		$this->allFields = $fieldsModel->getAllFields();
 		$this->postData = $_POST;
 
-        
 		parent::display($tpl);
 	}
 
