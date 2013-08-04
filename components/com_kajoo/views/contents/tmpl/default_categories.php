@@ -11,4 +11,4 @@
 // no direct access
 defined('_JEXEC') or die;
 ?>
-<div id="catContainer"></div>
+<!-- <div id="catContainer"></div> -->

@@ -74,12 +74,12 @@ endif;
 		</div>	
 
 
-	<?php if($positions[2]!='empty'): ?>
+	<?php if($positions[2]!='empty' && false): ?>
 		<div class="span<?php echo $secSpan;?>">
 			<?php foreach ($positions[2] as $position):?>
 				<?php echo $this->loadTemplate($position); ?>		
 			<?php endforeach;?>
-		</div>	
+		</div>
 	<?php endif;?>
 
 </div>
