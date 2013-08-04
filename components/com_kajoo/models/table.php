@@ -76,7 +76,7 @@ class KajooModelTable extends JModelList {
         parent::populateState();
     }
     
-    public function filterKaltura($partnerId)
+    public function filterKaltura($partnerId, $mediaType = 0)
 	// Returns all the fields filtered iin the API
 	{
 		$search = $this->getState('filter.searchText');
@@ -103,14 +103,51 @@ class KajooModelTable extends JModelList {
 			{
 				$filter->categoriesIdsMatchOr = $this->getState('filter.categories'); 	
 			}
-			
+			JUri::getInstance($uri);
 		endif;
 		
-		//Type = video
-		$filter->mediaTypeEqual =1;
+		switch ($mediaType) {
+			case 1:
+				//Type = video
+				$filter->mediaTypeEqual = 1;
+				break;
+			case 2:
+				# Type = images
+				$filter->mediaTypeEqual = 2;
+				break;
+			case 5:
+				# Type = audio
+				$filter->mediaTypeEqual = 5;
+				break;
+			default:
+				# Type = all
+				 $filter->idNotIn = 0;
+				break;
+		}
 		
-		// Connect to Kaltura API
+		//Type = video
+		// $filter->mediaTypeEqual = 1;
+		
+		# Type = audio
+		// $filter->mediaTypeEqual = 5;
 
+		# Type = images
+		// $filter->mediaTypeEqual = 2;
+
+		# Type = all
+		// $filter->idNotIn = 0;
+		
+		// JLog::add(JUri::getInstance($uri='SERVER'));
+		// JFactory::getApplication()->enqueueMessage(JUri::getInstance($uri='SERVER'));
+		
+		// $menu = JSite::getMenu();
+		// $alias = $menu->getActive()->alias;
+		// JError::raiseError(500,  $_SERVER["REQUEST_URI"]);
+		
+
+		
+
+		// Connect to Kaltura API
 		$PartnerInfo = KajooHelper::getPartnerInfo($partnerId);
 		$kClient = KajooHelper::getKalturaClient($PartnerInfo->partnerid, $PartnerInfo->administratorsecret, true,$PartnerInfo->url);
 		try
@@ -238,7 +275,7 @@ class KajooModelTable extends JModelList {
         
 
     }
-    protected function getListQuery() {
+    protected function getListQuery($mediaType = 2) {
         // Create a new query object.
 
         $db = $this->getDbo();
@@ -248,13 +285,13 @@ class KajooModelTable extends JModelList {
         
         // If Partner ID = 0 => The user selected "all" in the partners filter
         if($partnerId!=0):
-	        $filtered_results = $this->filterKaltura($partnerId);
+	        $filtered_results = $this->filterKaltura($partnerId, $mediaType);
 	        $list_entry_ids = $filtered_results->filter_search_text;
 	    else:
 	    	$availablePartners = KajooHelper::getPartnersList();
 	    	$filtered_results_all_filter_array = array();
 	    	foreach($availablePartners as $key=>$partner):
-	    		$filtered_results_all[$key] = $this->filterKaltura($partner->id);
+	    		$filtered_results_all[$key] = $this->filterKaltura($partner->id, $mediaType);
 	    		$filtered_results_all_filter_array[] = $filtered_results_all[$key]->filter_search;
 	    	endforeach;
 	    	
@@ -262,13 +299,11 @@ class KajooModelTable extends JModelList {
 	    	foreach ($filtered_results_all_filter_array as $res_array):
 	    		$res_array_all = array_merge($res_array_all,$res_array);
 	    	endforeach;
+			
 
 	    	$list_entry_ids = "'". implode("', '", $res_array_all) ."'";
         endif;
         
-
-
-		
 		$custom_fields = $this->getFilteredQuery();
 
         $query = $db->getQuery(true);
@@ -280,16 +315,14 @@ class KajooModelTable extends JModelList {
                 )
         );
         $query->from('`#__kajoo_content` AS a');
-
         
-        
-            // Filter by published state
-            $published = $this->getState('filter.state');
-            if (is_numeric($published)) {
-                $query->where('a.state = '.(int) $published);
-            } else if ($published === '') {
-                $query->where('(a.state IN (0, 1))');
-            }
+        // Filter by published state
+        $published = $this->getState('filter.state');
+        if (is_numeric($published)) {
+            $query->where('a.state = '.(int) $published);
+        } else if ($published === '') {
+            $query->where('(a.state IN (0, 1))');
+        }
             
        $query->where('(a.entry_id IN ('.$list_entry_ids.'))');
         
@@ -307,5 +340,23 @@ class KajooModelTable extends JModelList {
 
         return $query;
     }
+
+	protected function _getListQuery($mediaType = 0)
+	{
+		// Capture the last store id used.
+		static $lastStoreId;
+
+		// Compute the current store id.
+		$currentStoreId = $this->getStoreId();
+		
+		// If the last store id is different from the current, refresh the query.
+		if ($lastStoreId != $currentStoreId || empty($this->query))
+		{
+			$lastStoreId = $currentStoreId;
+			$this->query = $this->getListQuery($mediaType);
+		}
+
+		return $this->query;
+	}
 
 }

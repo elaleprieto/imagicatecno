@@ -121,8 +121,15 @@ class JModelList extends JModelLegacy
 			return $this->cache[$store];
 		}
 
-		// Load the list items.
-		$query = $this->_getListQuery();
+		if(strpos($_SERVER["HTTP_REFERER"], 'audiovisual')):
+			$query = $this->_getListQuery(1);
+		elseif(strpos($_SERVER["HTTP_REFERER"], 'grafica')):
+			$query = $this->_getListQuery(2);
+		elseif(strpos($_SERVER["HTTP_REFERER"], 'radio')):
+			$query = $this->_getListQuery(5);
+		else:
+			$query = $this->_getListQuery(0);
+		endif;
 
 		try
 		{
@@ -133,6 +140,7 @@ class JModelList extends JModelLegacy
 			$this->setError($e->getMessage());
 			return false;
 		}
+		
 
 		// Add the items to the internal cache.
 		$this->cache[$store] = $items;
