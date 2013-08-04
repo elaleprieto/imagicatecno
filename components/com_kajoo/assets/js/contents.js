@@ -101,11 +101,11 @@ console.log(data);
 				e.preventDefault();
 				
 			});
-				  var scroll_on_reload = $('input#scroll_on_reload').val();
-				  if(scroll_on_reload==1)
-				  {
-					$.scrollTo('#topColsKajoo',400);	  
-				  }
+				  // var scroll_on_reload = $('input#scroll_on_reload').val();
+				  // if(scroll_on_reload==1)
+				  // {
+					// $.scrollTo('#topColsKajoo',400);	  
+				  // }
 
       }                         
         
