@@ -69,7 +69,7 @@ function loadData()
             $('div#tableData').html('<div id="loadingKajoo"></div>');
         },                          
         success: function(data){
-			console.log(data);
+			// console.log(data);
         	$(".kajooInput").prop('disabled', false);
 
         	$('div#tableData').html('');
@@ -552,20 +552,20 @@ $('#reqinfo').validate({
 		    var items = list.items();
 		    values['wishlist'] = items;
 
-		    console.log(values);
-		    	var url = "index.php?option=com_kajoo&controller=contents&task=contents.sendRequest&format=raw";
-		    	$.ajax({
-			        type: "POST",
-			        url: url,
-			        data: values,
-			        cache: false,
-			        beforeSend: function(){
-			        },                          
-			        success: function(data){
-			        	alert(data);
-			           
-			        	
-			      }                         
+		    // console.log(values);
+	    	var url = "index.php?option=com_kajoo&controller=contents&task=contents.sendRequest&format=raw";
+	    	$.ajax({
+		        type: "POST",
+		        url: url,
+		        data: values,
+		        cache: false,
+		        beforeSend: function(){
+		        },                          
+		        success: function(data){
+		        	alert(data);
+		           
+		        	
+		      }                         
 		        
 		     });
 		  return false;
