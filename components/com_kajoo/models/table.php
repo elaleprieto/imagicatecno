@@ -132,8 +132,7 @@ class KajooModelTable extends JModelList {
 		try
 		{
 			$filter->advancedSearch = new KalturaMetadataSearchItem();
-			$filter->advancedSearch->value = 'lemon';
-			// $filter->freeText = 'Lemon';
+			$filter->advancedSearch->value = '';
 			$results = $kClient->media->listAction($filter);
 			
 		}
@@ -147,14 +146,9 @@ class KajooModelTable extends JModelList {
 			$filter_search[] = $object->id;
 		endforeach;
 
-		// JFactory::getApplication()->enqueueMessage('Mensaje');
-		// JFactory::getApplication()->enqueueMessage($filter_search);
-		// JError::raiseError(500, implode("', '", $results->filter_search));
-		
 		$results->filter_search = $filter_search;
 		$results->filter_search_text = "'". implode("', '", $results->filter_search) ."'";
 
-		// JError::raiseError(500, $results->filter_search_text);
 		return $results;
 		
 	}
