@@ -84,6 +84,7 @@ class KajooModelTable extends JModelList {
 
 		$filter = new KalturaMediaEntryFilter();
 		$filter->orderBy = KalturaPlayableEntryOrderBy::CREATED_AT_DESC;
+		// $filter->advancedSearch = new KalturaMetadataSearchItem();
 		
 		$search = trim($search);
 		
@@ -92,32 +93,32 @@ class KajooModelTable extends JModelList {
 		
 		$filter->freeText = $search;
 		
-		if($this->getState('filter.categories')):
-
-			$catsArray = explode(",", $this->getState('filter.categories'));
-
-			if (in_array("all", $catsArray)) {
-			  
-			}
-			else
-			{
-				$filter->categoriesIdsMatchOr = $this->getState('filter.categories'); 	
-			}
-			JUri::getInstance($uri);
-		endif;
+		// if($this->getState('filter.categories')):
+// 
+			// $catsArray = explode(",", $this->getState('filter.categories'));
+// 
+			// if (in_array("all", $catsArray)) {
+// 			  
+			// }
+			// else
+			// {
+				// $filter->categoriesIdsMatchOr = $this->getState('filter.categories'); 	
+			// }
+			// JUri::getInstance($uri);
+		// endif;
 		
 		switch ($mediaType) {
-			case 1:
-				//Type = video
-				$filter->mediaTypeEqual = 1;
+			case KalturaMediaType::VIDEO:
+				# Type = video
+				$filter->mediaTypeEqual = KalturaMediaType::VIDEO;
 				break;
-			case 2:
+			case KalturaMediaType::IMAGE:
 				# Type = images
-				$filter->mediaTypeEqual = 2;
+				$filter->mediaTypeEqual = KalturaMediaType::IMAGE;
 				break;
-			case 5:
+			case KalturaMediaType::AUDIO:
 				# Type = audio
-				$filter->mediaTypeEqual = 5;
+				$filter->mediaTypeEqual = KalturaMediaType::AUDIO;
 				break;
 			default:
 				# Type = all
@@ -127,9 +128,12 @@ class KajooModelTable extends JModelList {
 		
 		// Connect to Kaltura API
 		$PartnerInfo = KajooHelper::getPartnerInfo($partnerId);
-		$kClient = KajooHelper::getKalturaClient($PartnerInfo->partnerid, $PartnerInfo->administratorsecret, true,$PartnerInfo->url);
+		$kClient = KajooHelper::getKalturaClient($PartnerInfo->partnerid, $PartnerInfo->administratorsecret, true, $PartnerInfo->url);
 		try
 		{
+			$filter->advancedSearch = new KalturaMetadataSearchItem();
+			$filter->advancedSearch->value = 'lemon';
+			// $filter->freeText = 'Lemon';
 			$results = $kClient->media->listAction($filter);
 			
 		}
@@ -142,10 +146,15 @@ class KajooModelTable extends JModelList {
 		foreach ($results->objects as $object):
 			$filter_search[] = $object->id;
 		endforeach;
+
+		// JFactory::getApplication()->enqueueMessage('Mensaje');
+		// JFactory::getApplication()->enqueueMessage($filter_search);
+		// JError::raiseError(500, implode("', '", $results->filter_search));
 		
 		$results->filter_search = $filter_search;
 		$results->filter_search_text = "'". implode("', '", $results->filter_search) ."'";
 
+		// JError::raiseError(500, $results->filter_search_text);
 		return $results;
 		
 	}
