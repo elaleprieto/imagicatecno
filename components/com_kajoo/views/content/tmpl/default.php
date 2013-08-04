@@ -62,8 +62,10 @@ try
     if(isset($result->objects[0]->xml)){
         $xml = simplexml_load_string($result->objects[0]->xml);
         // $record_date = (int)$xml->RecordDate;
-        $director = $xml->Director;
-        $pais = $xml->País;
+        $nombre = $xml->Nombre;
+        $coordinador = $xml->Coordinador;
+        $ciudad = $xml->Ciudad;
+        $provincia = $xml->Provincia;
     }
 		
     // else{
@@ -96,16 +98,9 @@ try
 	// if ($listRespo->totalCount < 1) {
 		// throw Exception("Error");
 	// }
-	// header('Location: '.$listRespo->objects[0]->xml);
 // 	
-	// echo "<br />Meta SERvice------------<br />";
-	// // print_r($meta);
 // 
-	// echo "<br />ListRepo------------<br />";
-	// print_r($listRespo);
 // 	
-	// echo "<br />Meta------------<br />";
-	// print_r($Meta);
 // 
 	// $Meta = $listRespo->objects[0];
 // 	
@@ -180,12 +175,20 @@ catch(Exception $ex)
 		<div class="well">
 			<ul class="itemListDetails">
 				<li>
-					<span class="tit_itemList">Director</span> 
-					<?php echo $director ?>
+					<span class="tit_itemList">Delegación</span> 
+					<?php echo $nombre ?>
 				</li>
 				<li>
-					<span class="tit_itemList">País</span> 
-					<?php echo $pais ?>
+					<span class="tit_itemList">Coordinador</span> 
+					<?php echo $coordinador ?>
+				</li>
+				<li>
+					<span class="tit_itemList">Ciudad</span> 
+					<?php echo $ciudad ?>
+				</li>
+				<li>
+					<span class="tit_itemList">Provincia</span> 
+					<?php echo $provincia ?>
 				</li>
 				<li>
 					<span class="tit_itemList"><?php echo JText::_('COM_KAJOO_ITEMCONTENT_CREATED');?></span> 
