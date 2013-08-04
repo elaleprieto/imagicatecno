@@ -25,147 +25,149 @@ defined('_JEXEC') or die;
     
 ?>
 <div class="kajooMainContent">
-<?php if($this->items) :
-?>
-
-
-			<?php foreach ($this->items as $item) :?>
+	<?php if($this->items): ?>
+		<?php foreach ($this->items as $item) :?>
 			<div class="row-fluid itemKajooMainContent">
-			<?php $partner = KajooHelper::getPartnerInfo($item->partner_id);?>
-			
-			<?php
-			if($partner->url==''):
-				$thumbMainUrl = 'http://cdn.kaltura.com';
-			else:
-				$thumbMainUrl = $partner->url;
-			endif;
-			?>
-			
+				<?php $partner = KajooHelper::getPartnerInfo($item->partner_id);?>
 				
-					<div class="span3">
-						<?php if($link_images):?>
+				<?php
+				if($partner->url==''):
+					$thumbMainUrl = 'http://cdn.kaltura.com';
+				else:
+					$thumbMainUrl = $partner->url;
+				endif;
+				?>
+				<div class="span3">
+					<!-- Imagen = Thumb -->
+					<?php if($link_images): ?>
 						<a href="<?php echo JRoute::_('index.php?option=com_kajoo&view=content&id=' . (int)$item->id); ?>">
-<img src="<?php echo $thumbMainUrl;?>/p/<?php echo $partner->partnerid;?>/sp/0/thumbnail/entry_id/<?php echo $item->entry_id;?>/width/520/height/290" onmouseover="KalturaThumbRotator.start(this)" onmouseout="KalturaThumbRotator.end(this)" class="img-polaroid">
+							<img 
+								src="<?php echo $thumbMainUrl;?>/p/<?php echo $partner->partnerid;?>/sp/0/thumbnail/entry_id/<?php echo $item->entry_id;?>/width/520/height/290" 
+								onmouseover="KalturaThumbRotator.start(this)" 
+								onmouseout="KalturaThumbRotator.end(this)" 
+								class="img-polaroid"
+							>
 						</a>
-						<?php else: ?>
-<img src="<?php echo $thumbMainUrl;?>/p/<?php echo $partner->partnerid;?>/sp/0/thumbnail/entry_id/<?php echo $item->entry_id;?>/width/520/height/290"  onmouseover="KalturaThumbRotator.start(this)" onmouseout="KalturaThumbRotator.end(this)">
-						<?php endif;?>
-
-
-
-
-						
-						<div class="iconsKajoo" id="<?php echo $item->entry_id;?>">
-							<a href="#" id="kajooID<?php echo $item->entry_id;?>" title="<?php echo $item->name;?>" class="ui-icon ui-icon-heart kajooAddWishlist"></a>
-							<a href="<?php echo JRoute::_('index.php?option=com_kajoo&view=content&id=' . (int)$item->id); ?>" id="<?php echo $item->name;?>" class="ui-icon ui-icon-video"></a>
-						</div>
-						
-					</div>
-					<div class="span5">
-						<div class="mainCentKajoo">
-							<div class="entryTitle">
-								<?php if($link_titles):?>
-								<h3><a href="<?php echo JRoute::_('index.php?option=com_kajoo&view=content&id=' . (int)$item->id); ?>">
-									<?php echo $item->name;?>
-								</a>
-								</h3>	
-								<?php else:?>
-									<h3><?php echo $item->name;?></h3>
-								<?php endif;?>
-							</div>
-							
-							<!-- EntryId -->
-							<!-- Se comenta porque no se utiliza -->
-							<!-- <div class="entryId">#<?php echo $item->entry_id;?></div> -->
-							
-							<!-- Descripción -->
-							<?php if(strlen($item->description) > 0) { ?>
-								<div class="entryDesc"><?php echo KajooHelper::limit_words($item->description,$maxsizedesc);?></div>
-							<?php } else {?>
-								<div class="entryDesc"><i>No contiene descripción</i></div>
-							<?php } ?>
-						</div>
-					</div>
-					<?php if($show_fields):?>
-						<div class="span4">
-							<div class="fieldsWell">
-								<ul class="nav nav-list">
-									
-								<!-- Partner -->
-								<?php if($show_partner):?>
-									<li><span class="entryFieldPartner"><?php echo $partner->name;?></span></li>
-								<?php endif; ?>
-								
-								
-								<!-- Duración -->
-								<?php if($show_duration):?>
-									<?php $formated_duration = KajooHelper::formatTime($item->duration);?>
-									<li><span class="entryFieldName"><?php echo JText::_('COM_KAJOO_CONTENTS_DURATION');?>:</span> <?php echo $formated_duration;?></li>
-								<?php endif; ?>
-								
-								<?php foreach($this->allFields as $field): ?>
-									<?php $value = KajooHelper::getContentFieldValue($item->id,$field->id,$field->type);?>
-									<?php if($value): ?>
-										<li><span class="entryFieldName"><?php echo $field->name;?>:</span> <?php echo $value;?></li>
-									<?php endif;?>
-								<?php endforeach;?>
-								</ul>
-							</div>
-						</div>
+					<?php else: ?>
+						<img
+							src="<?php echo $thumbMainUrl;?>/p/<?php echo $partner->partnerid;?>/sp/0/thumbnail/entry_id/<?php echo $item->entry_id;?>/width/520/height/290"
+							onmouseover="KalturaThumbRotator.start(this)"
+							onmouseout="KalturaThumbRotator.end(this)"
+						>
 					<?php endif;?>
+					
+					<!-- Iconos: Favorito y View Content -->
+					<div class="iconsKajoo" id="<?php echo $item->entry_id;?>">
+						<a href="#" id="kajooID<?php echo $item->entry_id;?>" title="<?php echo $item->name;?>" class="ui-icon ui-icon-heart kajooAddWishlist"></a>
+						<a href="<?php echo JRoute::_('index.php?option=com_kajoo&view=content&id=' . (int)$item->id); ?>" id="<?php echo $item->name;?>" class="ui-icon ui-icon-video"></a>
+					</div>
+				</div>
+				<div class="span5">
+					<div class="mainCentKajoo">
+						<!-- Título -->
+						<div class="entryTitle">
+							<?php if($link_titles):?>
+								<h3>
+									<a href="<?php echo JRoute::_('index.php?option=com_kajoo&view=content&id=' . (int)$item->id); ?>">
+										<?php echo $item->name;?>
+									</a>
+								</h3>	
+							<?php else:?>
+								<h3><?php echo $item->name;?></h3>
+							<?php endif;?>
+						</div>
+						
+						<!-- EntryId -->
+						<!-- Se comenta porque no se utiliza -->
+							<!-- <div class="entryId">#<?php echo $item->entry_id;?></div> -->
+						
+						<!-- Descripción -->
+						<?php if(strlen($item->description) > 0): ?>
+							<div class="entryDesc"><?php echo KajooHelper::limit_words($item->description,$maxsizedesc);?></div>
+						<?php else:?>
+							<div class="entryDesc"><i>No contiene descripción</i></div>
+						<?php endif; ?>
+					</div>
+				</div>
+				<?php if($show_fields):?>
+					<div class="span4">
+						<div class="fieldsWell">
+							<ul class="nav nav-list">
+								
+							<!-- Partner -->
+							<?php if($show_partner):?>
+								<li><span class="entryFieldPartner"><?php echo $partner->name;?></span></li>
+							<?php endif; ?>
+							
+							
+							<!-- Duración -->
+							<?php if($show_duration):?>
+								<?php $formated_duration = KajooHelper::formatTime($item->duration);?>
+								<li><span class="entryFieldName"><?php echo JText::_('COM_KAJOO_CONTENTS_DURATION');?>:</span> <?php echo $formated_duration;?></li>
+							<?php endif; ?>
+							
+							<?php foreach($this->allFields as $field): ?>
+								<?php $value = KajooHelper::getContentFieldValue($item->id,$field->id,$field->type);?>
+								<?php if($value): ?>
+									<li><span class="entryFieldName"><?php echo $field->name;?>:</span> <?php echo $value;?></li>
+								<?php endif;?>
+							<?php endforeach;?>
+							</ul>
+						</div>
+					</div>
+				<?php endif;?>
 			</div>
 			<hr>
-			<?php endforeach;?>	
+		<?php endforeach;?>	
 		
-	<div class="pagination pagination-large pagination-centered">
-
-	    <ul>
-	    	<li class="<?php if($this->pagination->pagesStart==$this->pagination->pagesCurrent) echo "disabled";?>"><a href="#" id="firstPag"><i class="icon-first"></i></a></li>
-	    	<li class="<?php if($this->pagination->pagesStart==$this->pagination->pagesCurrent) echo "disabled";?>"><a href="#" id="prevPag"><i class="icon-previous"></i></a></li>
-		    <?php for($i=1;$i<=$this->pagination->pagesTotal;$i++):?>
-		    <?php
-		    		$statusPagination = '';
-		    	if($this->pagination->pagesCurrent==$i):
-		    		$statusPagination = 'active';
-		    	endif;
-		    ?>
+		<!-- Paginación -->
+		<div class="pagination pagination-large pagination-centered">
+		    <ul>
+		    	<li class="<?php if($this->pagination->pagesStart==$this->pagination->pagesCurrent) echo "disabled";?>"><a href="#" id="firstPag"><i class="icon-first"></i></a></li>
+		    	<li class="<?php if($this->pagination->pagesStart==$this->pagination->pagesCurrent) echo "disabled";?>"><a href="#" id="prevPag"><i class="icon-previous"></i></a></li>
+			    <?php for($i=1;$i<=$this->pagination->pagesTotal;$i++):?>
+				    <?php
+				    	$statusPagination = '';
+				    	if($this->pagination->pagesCurrent==$i):
+				    		$statusPagination = 'active';
+				    	endif;
+				    ?>
+				    
+				    <li class="<?php echo $statusPagination;?>"><a href="#" id="<?php echo $i;?>" class="pageChange"><?php echo $i;?></a></li>
+			    <?php endfor;?>
+			    <li class="<?php if($this->pagination->pagesTotal==$this->pagination->pagesCurrent) echo "disabled";?>"><a href="#" id="nextPag"><i class="icon-next"></i></a></li>
+			    <li class="<?php if($this->pagination->pagesTotal==$this->pagination->pagesCurrent) echo "disabled";?>"><a href="#" id="lastPag"><i class="icon-last"></i></a></li>
+		    </ul>
 		    
-		    	<li class="<?php echo $statusPagination;?>"><a href="#" id="<?php echo $i;?>" class="pageChange"><?php echo $i;?></a></li>
-		    <?php endfor;?>
-		    <li class="<?php if($this->pagination->pagesTotal==$this->pagination->pagesCurrent) echo "disabled";?>"><a href="#" id="nextPag"><i class="icon-next"></i></a></li>
-		    <li class="<?php if($this->pagination->pagesTotal==$this->pagination->pagesCurrent) echo "disabled";?>"><a href="#" id="lastPag"><i class="icon-last"></i></a></li>
-	    </ul>
-	    
 	    	<div class="showingPaginationtext">
 				<strong><?php echo JText::_('COM_KAJOO_CONTENTS_TOTALRECORDS');?> <?php echo $this->pagination->total;?></strong>
 				<br />
 				<?php echo JText::sprintf('COM_KAJOO_CONTENTS_PAGEXOF', $this->pagination->pagesCurrent,$this->pagination->pagesStop); ?>
 			</div>
-			
-			 <div class="clearfix"></div>
-	    <div class="shownumPagination">
-	    	<select name="limit" id="limitKajoo" class="input-mini kajooInput">
-		    	<option value="5" <?php if($this->pagination->limit==5) echo 'selected="selected"';?>>5</option>
-		    	<option value="10" <?php if($this->pagination->limit==10) echo 'selected="selected"';?>>10</option>
-		    	<option value="20" <?php if($this->pagination->limit==20) echo 'selected="selected"';?>>20</option>
-		    	<option value="50" <?php if($this->pagination->limit==50) echo 'selected="selected"';?>>50</option>	
-		    	<option value="100" <?php if($this->pagination->limit==100) echo 'selected="selected"';?>>100</option>	    		    		    	
-	    	</select>
-	    	<input type="hidden" id="totalPages" value="<?php echo $this->pagination->pagesTotal;?>">
-	    	<input type="hidden" name="scroll_on_reload" id="scroll_on_reload" value="<?php echo $scroll_on_reload;?>">
-
-	    	 <div class="clearfix"></div>
-    	</div>
-	   
-    </div>
-    
-
- <div class="clearfix"></div>
-
-<?php else: ?>
-	<div class="alert alert-info">
-    	<?php echo JText::_('COM_KAJOO_CONTENTS_NOITEMS');?>
-	</div>
-
-<?php endif; ?>
+				
+			<div class="clearfix"></div>
+		    <div class="shownumPagination">
+		    	<select name="limit" id="limitKajoo" class="input-mini kajooInput">
+			    	<option value="5" <?php if($this->pagination->limit==5) echo 'selected="selected"';?>>5</option>
+			    	<option value="10" <?php if($this->pagination->limit==10) echo 'selected="selected"';?>>10</option>
+			    	<option value="20" <?php if($this->pagination->limit==20) echo 'selected="selected"';?>>20</option>
+			    	<option value="50" <?php if($this->pagination->limit==50) echo 'selected="selected"';?>>50</option>	
+			    	<option value="100" <?php if($this->pagination->limit==100) echo 'selected="selected"';?>>100</option>	    		    		    	
+		    	</select>
+		    	<input type="hidden" id="totalPages" value="<?php echo $this->pagination->pagesTotal;?>">
+		    	<input type="hidden" name="scroll_on_reload" id="scroll_on_reload" value="<?php echo $scroll_on_reload;?>">
+	
+				<div class="clearfix"></div>
+	    	</div>
+	    </div>
+	    
+	
+	 <div class="clearfix"></div>
+	
+	<?php else: ?>
+		<div class="alert alert-info">
+	    	<?php echo JText::_('COM_KAJOO_CONTENTS_NOITEMS');?>
+		</div>
+	
+	<?php endif; ?>
 </div>
