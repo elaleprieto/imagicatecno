@@ -56,7 +56,8 @@ function loadData()
 				 'limitstart':limitstart,
 				 'filters' : fieldsArray
 				 }
-console.log(data);
+
+
 	$.ajax({
         type: "POST",
         url: url,
@@ -68,6 +69,7 @@ console.log(data);
             $('div#tableData').html('<div id="loadingKajoo"></div>');
         },                          
         success: function(data){
+			console.log(data);
         	$(".kajooInput").prop('disabled', false);
 
         	$('div#tableData').html('');
@@ -610,7 +612,7 @@ $('#reqinfo').validate({
 	selectAllCats();
 	loadData();
 	firstLoadCat();
-	loadCats();
+	// loadCats();
 	
 	toggleSubmitMoreInfo();
 });
