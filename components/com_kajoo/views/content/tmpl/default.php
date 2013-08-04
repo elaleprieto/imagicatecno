@@ -39,9 +39,89 @@ catch(Exception $ex)
 	echo KajooHelper::getKalturaError(JText::_('Fail on geting thumbs'));
 }
 
+try
+{
+	// $data = $kClient->data->get('0_9oj2uhzo');
+	// echo $kClient->getKs();
+	
+	// $client = getKalturaClient ();
+	$filter = new KalturaMetadataFilter();
+	$filter->objectIdEqual = $this->item->kaltura_video->id;
+	$filter->metadataObjectTypeEqual = KalturaMetadataObjectType::ENTRY;
+	$result = $kClient->metadata->listAction($filter);
+	// print_r($result);
+	
+	
+    // $filter_meta = new KalturaMetadataFilter();
+    // $filter_meta->metadataObjectTypeEqual = KalturaMetadataObjectType::ENTRY;
+    // $filter_meta->objectIdEqual = $entry->id;
+    // $filter_meta->statusEqual = KalturaMetadataStatus::VALID;
+    // $metadataPlugin = KalturaMetadataClientPlugin::get($client);
+    // $result = $metadataPlugin->metadata->listAction($filter_meta);
+    //print_r($result);
+    if(isset($result->objects[0]->xml)){
+        $xml = simplexml_load_string($result->objects[0]->xml);
+        // $record_date = (int)$xml->RecordDate;
+        $director = $xml->Director;
+        $pais = $xml->País;
+    }
+		
+    // else{
+        // $record_date = $entry->createdAt;
+    // }
+    // echo '<li id="'.$count.'"><img src="'.$entry->thumbnailUrl.'"/> <strong>Name:</strong> '.$entry->name.' <strong>Record Date:</strong> '.date('m/d/Y', $record_date).' <strong>Duration:</strong> '.$entry->duration.' sec</li>';
+    // $count++;
 
-
- ?>
+	
+	
+	// $metadataPlugin = KalturaMetadataClientPlugin::get($kClient);
+	// $service = new KalturaMetadataService();
+	// $listRespo = $metadataPlugin->metadata->listAction($filter, $pager);
+	// $meta = $metadataPlugin->metadata->get(36339822);
+	// $meta = $service->get(36339822);
+	
+	// $xmlMeta = simplexml_load_string($meta->xml);
+// 	
+	// print_r($meta->xml->metadata);
+// 	$Meta->xml
+	// foreach ($xmlMeta as $mensaje)
+  		// echo $mensaje.' ';
+// 	
+	
+	// $fieldsModel = & JModelLegacy::getInstance('fields', 'KajooModel'); 
+	// $custom_fields = $fieldsModel->getAllFields();
+	
+	// print_r($fieldsModel);
+	
+	// if ($listRespo->totalCount < 1) {
+		// throw Exception("Error");
+	// }
+	// header('Location: '.$listRespo->objects[0]->xml);
+// 	
+	// echo "<br />Meta SERvice------------<br />";
+	// // print_r($meta);
+// 
+	// echo "<br />ListRepo------------<br />";
+	// print_r($listRespo);
+// 	
+	// echo "<br />Meta------------<br />";
+	// print_r($Meta);
+// 
+	// $Meta = $listRespo->objects[0];
+// 	
+	// $data = $Meta->xml;
+// 	
+// 	
+	// print_r($data);
+	// echo "<br />------------<br />";
+	// print_r($kClient->metadataProfile->get(1));
+	// echo $data;
+}
+catch(Exception $ex)
+{
+	echo 'Error: '.$ex;
+}
+?>
 
 <a href="<?php echo JRoute::_('index.php?option=com_kajoo&view=contents'); ?>" class="btn btn-small"><i class="icon-chevron-left"></i> <?php echo JText::_('COM_KAJOO_ITEMCONTENT_PREVPAGE');?></a>
 
@@ -99,6 +179,14 @@ catch(Exception $ex)
 	
 		<div class="well">
 			<ul class="itemListDetails">
+				<li>
+					<span class="tit_itemList">Director</span> 
+					<?php echo $director ?>
+				</li>
+				<li>
+					<span class="tit_itemList">País</span> 
+					<?php echo $pais ?>
+				</li>
 				<li>
 					<span class="tit_itemList"><?php echo JText::_('COM_KAJOO_ITEMCONTENT_CREATED');?></span> 
 					<?php echo date('d/m/Y H:i', $this->item->kaltura_video->createdAt) ?>
