@@ -50,6 +50,7 @@ try
 	$filter->metadataObjectTypeEqual = KalturaMetadataObjectType::ENTRY;
 	$result = $kClient->metadata->listAction($filter);
 	// print_r($result);
+	// print_r($this->item->kaltura_video); 
 	
 	
     // $filter_meta = new KalturaMetadataFilter();
@@ -124,14 +125,28 @@ catch(Exception $ex)
 	<h2><?php echo $this->item->name;?></h2>
 
 	<div class="infoDetail_video">
-
-		
-		<?php echo KajooHelper::getUrlEmbed($this->item->partner_id,$this->item->kaltura_video->id,$PartnerInfo->defaultPlayer); ?>
-		<hr>
-		<?php if($show_embed):?>
-		<textarea><?php  echo KajooHelper::getUrlEmbed($this->item->partner_id,$this->item->kaltura_video->id,$PartnerInfo->defaultPlayer); ?></textarea>
-		<?php endif;?>
-
+		<?php 
+		# Se verifica si el mediaType corresponde a Imagen o no
+		if($this->item->kaltura_video->mediaType != 2): 
+		?>
+			<?php echo KajooHelper::getUrlEmbed($this->item->partner_id,$this->item->kaltura_video->id,$PartnerInfo->defaultPlayer); ?>
+			<hr>
+			<?php if($show_embed):?>
+				<textarea><?php  echo KajooHelper::getUrlEmbed($this->item->partner_id,$this->item->kaltura_video->id,$PartnerInfo->defaultPlayer); ?></textarea>
+			<?php endif;?> 
+		<?php 
+		# Si el mediaType se corresponde con Imagen, se verifica si tiene enlace
+		elseif($this->item->kaltura_video->description): 
+		?>  
+			<a href="<?php echo $this->item->kaltura_video->description ?>" target="_blank">
+				<img src="<?php echo $this->item->kaltura_video->thumbnailUrl ?>" />
+			</a>
+		<?php
+		# Si  el mediaType se corresponde con Imagen y no tiene enlace asociado, se deja la imagen sin enlace...
+		else:
+		?>
+			<img src="<?php echo $this->item->kaltura_video->thumbnailUrl ?>" />
+		<?php endif; ?> 
 	</div>
 	<?php if($show_thumbs):?>
 		<div class="well">
