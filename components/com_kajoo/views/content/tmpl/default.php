@@ -49,7 +49,7 @@ try
 	$filter->objectIdEqual = $this->item->kaltura_video->id;
 	$filter->metadataObjectTypeEqual = KalturaMetadataObjectType::ENTRY;
 	$result = $kClient->metadata->listAction($filter);
-	// print_r($result);
+	//print_r($this->item->kaltura_video);
 	
 	
     // $filter_meta = new KalturaMetadataFilter();
@@ -125,12 +125,18 @@ catch(Exception $ex)
 
 	<div class="infoDetail_video">
 
+		<?php if($this->item->kaltura_video->mediaType != 2): ?>
+			<?php echo KajooHelper::getUrlEmbed($this->item->partner_id,$this->item->kaltura_video->id,$PartnerInfo->defaultPlayer); ?>
+			<hr>
+			<?php if($show_embed):?>
+			<textarea><?php  echo KajooHelper::getUrlEmbed($this->item->partner_id,$this->item->kaltura_video->id,$PartnerInfo->defaultPlayer); ?></textarea>
+			<?php endif;?>
 		
-		<?php echo KajooHelper::getUrlEmbed($this->item->partner_id,$this->item->kaltura_video->id,$PartnerInfo->defaultPlayer); ?>
-		<hr>
-		<?php if($show_embed):?>
-		<textarea><?php  echo KajooHelper::getUrlEmbed($this->item->partner_id,$this->item->kaltura_video->id,$PartnerInfo->defaultPlayer); ?></textarea>
-		<?php endif;?>
+		<?php else: ?>	
+			<a href="<?php echo $this->item->kaltura_video->description ?>" target="_blank">
+				<img src="<?php echo $this->item->kaltura_video->thumbnailUrl ?>" />
+			</a>
+		<?php endif; ?>
 
 	</div>
 	<?php if($show_thumbs):?>
