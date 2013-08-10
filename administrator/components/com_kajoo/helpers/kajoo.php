@@ -561,7 +561,8 @@ $video = '<script type="text/javascript" src="http://html5.kaltura.org/js"></scr
 		$valid = json_decode($valid);
 		if($valid[3]==1)
 			$valid[0] = 0;
-			
+		
+		$valid[0] = 1;	
 		return $valid;
 	}
 	public function rediretLicense($error)

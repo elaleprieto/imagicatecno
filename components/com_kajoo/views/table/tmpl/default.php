@@ -36,7 +36,7 @@ $scroll_on_reload= $componentParams->get('scroll_on_reload', 1);
 					$thumbMainUrl = $partner->url;
 				endif;
 				?>
-				<div class="span3">
+				<div class="span4">
 					<!-- Imagen = Thumb -->
 					<?php if($link_images): ?>
 						<a href="<?php echo JRoute::_('index.php?option=com_kajoo&view=content&id=' . (int)$item->id); ?>">
@@ -61,7 +61,7 @@ $scroll_on_reload= $componentParams->get('scroll_on_reload', 1);
 						<a href="<?php echo JRoute::_('index.php?option=com_kajoo&view=content&id=' . (int)$item->id); ?>" id="<?php echo $item->name;?>" class="ui-icon ui-icon-video"></a>
 					</div>
 				</div>
-				<div class="span5">
+				<div class="span4">
 					<div class="mainCentKajoo">
 						<!-- Título -->
 						<div class="entryTitle">

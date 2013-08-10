@@ -12,7 +12,7 @@ defined('_JEXEC') or die;
 ?>
 
 <div class="well well-small">
-	<legend><?php echo JText::_('COM_KAJOO_CONTENTS_SEARCH');?></legend>
+	<!--<legend><?php echo JText::_('COM_KAJOO_CONTENTS_SEARCH');?></legend>-->
 	<input class="kajooInput" id="tableSearchButton" type="text" placeholder="<?php echo JText::_('COM_KAJOO_CONTENTS_SEARCH');?>..." data-provide="typeahead" data-items="4">
 	<br>
 	
