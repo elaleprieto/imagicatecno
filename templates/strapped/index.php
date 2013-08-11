@@ -57,6 +57,12 @@ $page_title = $mydoc->getTitle();
   <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
 <![endif]-->
 
+<!-- Iconos -->
+<link href="//netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.css" rel="stylesheet">
+
+<!-- Responsive Design Bootstrap-->
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link href="assets/css/bootstrap-responsive-dispositivos.css" rel="stylesheet">
 
 <?php
 if ($this->countModules('left') == 0):?>
@@ -203,30 +209,40 @@ endif;
 		</div>
 		<hr />
 		<?php endif; ?>
-		<div id="main" class="row<?php echo $template_width; ?>">
+		<!--<div id="main" class="row<?php echo $template_width; ?>">-->
+		<div id="main" class="row-fluid">
 			<!-- Left -->
 			<?php if($this->countModules('left')) : ?>
-			<div id="sidebar" class="span<?php echo $leftcolgrid;?>">
+			<!--<div id="sidebar" class="span<?php echo $leftcolgrid;?>">-->
+			<!-- Cambio el ancho de arriba, configurable por sapn2-->
+			<div id="sidebar" class="span2">
 				<jdoc:include type="modules" name="left" style="xhtml" />
 			</div>
 			<?php endif; ?>
 			<!-- Component -->
-			<div id="content" class="span<?php echo (12-$leftcolgrid-$rightcolgrid);?>">
-				<?php if($this->countModules('above-content')) : ?>
-				<!-- Above Content Module Position -->	
-				<div id="above-content">
-					<jdoc:include type="modules" name="above-content" style="xhtml" />	
+			<!--<div id="content" class="span<?php echo (12-$leftcolgrid-$rightcolgrid);?>">-->
+			<!-- Cambio el ancho de arriba, configurable por span7-->
+			<div id="content" class="span7">		
+				<div class="row-fluid">
+					<div class="span1"><p></p></div>
+					<div class="span10">	
+						<?php if($this->countModules('above-content')) : ?>
+						<!-- Above Content Module Position -->	
+						<div id="above-content">
+							<jdoc:include type="modules" name="above-content" style="xhtml" />	
+						</div>
+						<hr />
+						<?php endif; ?>
+						<jdoc:include type="component" />
+						<?php if($this->countModules('below-content')) : ?>
+						<!-- Below Content Module Position -->	
+						<hr />
+						<div id="below-content">
+							<jdoc:include type="modules" name="below-content" style="xhtml" />	
+						</div>
+						<?php endif; ?>
+					</div>
 				</div>
-				<hr />
-				<?php endif; ?>
-				<jdoc:include type="component" />
-				<?php if($this->countModules('below-content')) : ?>
-				<!-- Below Content Module Position -->	
-				<hr />
-				<div id="below-content">
-					<jdoc:include type="modules" name="below-content" style="xhtml" />	
-				</div>
-				<?php endif; ?>
 			</div>
 			<!-- Right -->
 			<?php if($this->countModules('right')) : ?>
@@ -255,7 +271,11 @@ endif;
 	================================================== -->
 	<footer class="footer">
 		<!--<p class="pull-right"><a href="#">Back to top</a></p>-->
-		<p class="pull-right"><a href="#"><i class="icon-arrow-up icon-white"></i></a></p>
+		<div class="row-fluid">		
+			<p class="pull-right">
+				<a href="#"><i class="icon-double-angle-up icon-3x" style="color:#CCCCCC; padding-right:20px;"></i></a>
+			</p>
+		</div>
 		<jdoc:include type="modules" name="footer" style="none" />	
 	</footer>
 	<jdoc:include type="modules" name="debug" />
@@ -267,16 +287,6 @@ endif;
 <script src="<?php echo $this->baseurl ?>/templates/<?php echo $this->template; ?>/js/bootstrap.min.js"></script> 
 <script src="<?php echo $this->baseurl ?>/templates/<?php echo $this->template; ?>/js/application.js"></script> 
 <script src="<?php echo $this->baseurl ?>/templates/<?php echo $this->template; ?>/js/prettify.js"></script> 
-<script>
-  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
-
-  ga('create', 'UA-27799433-8', 'pueblo.coop');
-  ga('send', 'pageview');
-
-</script>
 <script type="text/javascript">
         jQuery.noConflict();
 </script>
