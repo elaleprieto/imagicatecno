@@ -126,27 +126,38 @@ catch(Exception $ex)
 
 	<div class="infoDetail_video">
 		<?php 
-		# Se verifica si el mediaType corresponde a Imagen o no
-		if($this->item->kaltura_video->mediaType != 2): 
+		# Se verifica si el mediaType corresponde a Video
+		if($this->item->kaltura_video->mediaType == 1): 
 		?>
-			<?php echo KajooHelper::getUrlEmbed($this->item->partner_id,$this->item->kaltura_video->id,$PartnerInfo->defaultPlayer); ?>
+			<?php echo KajooHelper::getUrlEmbed($this->item->partner_id,$this->item->kaltura_video->id, $PartnerInfo->defaultPlayer); ?>
 			<hr>
 			<?php if($show_embed):?>
-				<textarea><?php  echo KajooHelper::getUrlEmbed($this->item->partner_id,$this->item->kaltura_video->id,$PartnerInfo->defaultPlayer); ?></textarea>
+				<textarea><?php  echo KajooHelper::getUrlEmbed($this->item->partner_id,$this->item->kaltura_video->id, $PartnerInfo->defaultPlayer); ?></textarea>
+			<?php endif;?> 
+		<?php 
+		# Si el mediaType se corresponde con Audio
+		elseif($this->item->kaltura_video->mediaType == 5): 
+		?>
+			<?php echo KajooHelper::getUrlEmbed($this->item->partner_id,$this->item->kaltura_video->id, $PartnerInfo->audioPlayer); ?>
+			<hr>
+			<?php if($show_embed):?>
+				<textarea><?php  echo KajooHelper::getUrlEmbed($this->item->partner_id,$this->item->kaltura_video->id, $PartnerInfo->audioPlayer); ?></textarea>
 			<?php endif;?> 
 		<?php 
 		# Si el mediaType se corresponde con Imagen, se verifica si tiene enlace
-		elseif($this->item->kaltura_video->description): 
+		elseif($this->item->kaltura_video->mediaType == 2): 
+			if($this->item->kaltura_video->description): 
 		?>  
-			<a href="<?php echo $this->item->kaltura_video->description ?>" target="_blank">
+				<a href="<?php echo $this->item->kaltura_video->description ?>" target="_blank">
+					<img src="<?php echo $this->item->kaltura_video->thumbnailUrl ?>" />
+				</a>
+			<?php
+			# Si  el mediaType se corresponde con Imagen y no tiene enlace asociado, se deja la imagen sin enlace...
+			else:
+			?>
 				<img src="<?php echo $this->item->kaltura_video->thumbnailUrl ?>" />
-			</a>
-		<?php
-		# Si  el mediaType se corresponde con Imagen y no tiene enlace asociado, se deja la imagen sin enlace...
-		else:
-		?>
-			<img src="<?php echo $this->item->kaltura_video->thumbnailUrl ?>" />
-		<?php endif; ?> 
+			<?php endif; ?>
+		<?php endif; ?>
 	</div>
 	<?php if($show_thumbs && false):?>
 		<div class="well">
