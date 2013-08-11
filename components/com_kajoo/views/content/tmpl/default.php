@@ -119,7 +119,7 @@ catch(Exception $ex)
 }
 ?>
 
-<a href="<?php echo JRoute::_('index.php?option=com_kajoo&view=contents'); ?>" class="btn btn-small"><i class="icon-chevron-left"></i> <?php echo JText::_('COM_KAJOO_ITEMCONTENT_PREVPAGE');?></a>
+<!-- <a href="<?php echo JRoute::_('index.php?option=com_kajoo&view=contents'); ?>" class="btn btn-small"><i class="icon-chevron-left"></i> <?php echo JText::_('COM_KAJOO_ITEMCONTENT_PREVPAGE');?></a> -->
 
 <div class="infoDetail_container">
 	<h2><?php echo $this->item->name;?></h2>
@@ -148,7 +148,7 @@ catch(Exception $ex)
 			<img src="<?php echo $this->item->kaltura_video->thumbnailUrl ?>" />
 		<?php endif; ?> 
 	</div>
-	<?php if($show_thumbs):?>
+	<?php if($show_thumbs && false):?>
 		<div class="well">
 		<ul class="gallerythumbsFront">
 			<?php foreach($thumbs as $thumb):
