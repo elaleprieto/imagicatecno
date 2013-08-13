@@ -238,7 +238,7 @@ catch(Exception $ex)
 					<li><span class="tit_itemList"><?php echo JText::_('COM_KAJOO_ITEMCONTENT_KEYS');?></span> <?php echo $this->item->kaltura_video->tags;?></li>
 				<?php endif;?>
 				
-				<?php if($allow_download): ?>
+				<?php if($allow_download && false): ?>
 					<li>
 						<span class="tit_itemList">
 							<?php echo JText::_('COM_KAJOO_ITEMCONTENT_DOWNLOAD');?>
