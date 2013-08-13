@@ -149,9 +149,10 @@ catch(Exception $ex)
 		elseif($this->item->kaltura_video->mediaType == 2): 
 			if($this->item->kaltura_video->description): 
 		?>  
-				<a href="<?php echo $this->item->kaltura_video->description ?>" target="_blank">
-					<img src="<?php echo $this->item->kaltura_video->thumbnailUrl ?>" />
-				</a>
+				<!-- <a href="<?php //echo $this->item->kaltura_video->description ?>" target="_blank"> -->
+					<!-- <img src="<?php //echo $this->item->kaltura_video->thumbnailUrl ?>" /> -->
+				<!-- </a> -->
+				<?php echo $this->item->kaltura_video->description ?> 
 			<?php
 			# Si  el mediaType se corresponde con Imagen y no tiene enlace asociado, se deja la imagen sin enlace...
 			else:
