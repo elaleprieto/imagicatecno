@@ -122,8 +122,9 @@ catch(Exception $ex)
 <!-- <a href="<?php echo JRoute::_('index.php?option=com_kajoo&view=contents'); ?>" class="btn btn-small"><i class="icon-chevron-left"></i> <?php echo JText::_('COM_KAJOO_ITEMCONTENT_PREVPAGE');?></a> -->
 
 <div class="infoDetail_container">
+	<br>	
 	<h2><?php echo $this->item->name;?></h2>
-
+	<br>
 	<div class="infoDetail_video">
 		<?php 
 		# Se verifica si el mediaType corresponde a Video
@@ -148,10 +149,9 @@ catch(Exception $ex)
 		elseif($this->item->kaltura_video->mediaType == 2): 
 			if($this->item->kaltura_video->description): 
 		?>  
-				<!-- <a href="<?php //echo $this->item->kaltura_video->description ?>" target="_blank"> -->
-					<!-- <img src="<?php //echo $this->item->kaltura_video->thumbnailUrl ?>" /> -->
-				<!-- </a> -->
-				<?php echo $this->item->kaltura_video->description ?>
+				<a href="<?php echo $this->item->kaltura_video->description ?>" target="_blank">
+					<img src="<?php echo $this->item->kaltura_video->thumbnailUrl ?>" />
+				</a>
 			<?php
 			# Si  el mediaType se corresponde con Imagen y no tiene enlace asociado, se deja la imagen sin enlace...
 			else:
