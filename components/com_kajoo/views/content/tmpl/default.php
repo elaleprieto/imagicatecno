@@ -190,7 +190,7 @@ catch(Exception $ex)
 		
 	<div class="infoDetail_share">
 	
-	<?php if($show_description):?>	
+	<?php if($show_description && false):?>	
 		<?php if($this->item->kaltura_video->description!=''): ?>
 		<div class="infoDetail_description">
 			<div class="well well-small">
