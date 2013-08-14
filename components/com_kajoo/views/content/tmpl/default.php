@@ -67,6 +67,7 @@ try
         $coordinador = $xml->Coordinador;
         $ciudad = $xml->Ciudad;
         $provincia = $xml->Provincia;
+		$pdf = $xml->PDF;
     }
 		
     // else{
@@ -147,12 +148,12 @@ catch(Exception $ex)
 		<?php 
 		# Si el mediaType se corresponde con Imagen, se verifica si tiene enlace
 		elseif($this->item->kaltura_video->mediaType == 2): 
-			if($this->item->kaltura_video->description): 
+			if($pdf): 
 		?>  
 				<!-- <a href="<?php //echo $this->item->kaltura_video->description ?>" target="_blank"> -->
 					<!-- <img src="<?php //echo $this->item->kaltura_video->thumbnailUrl ?>" /> -->
 				<!-- </a> -->
-				<?php echo $this->item->kaltura_video->description ?> 
+				<?php echo $pdf ?> 
 			<?php
 			# Si  el mediaType se corresponde con Imagen y no tiene enlace asociado, se deja la imagen sin enlace...
 			else:
