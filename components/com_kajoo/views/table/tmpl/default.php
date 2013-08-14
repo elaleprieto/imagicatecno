@@ -122,45 +122,47 @@ $scroll_on_reload= $componentParams->get('scroll_on_reload', 1);
 		<?php endforeach;?>	
 		
 		<!-- Paginación -->
-		<div class="pagination pagination-large pagination-centered">
-		    <ul>
-		    	<li class="<?php if($this->pagination->pagesStart==$this->pagination->pagesCurrent) echo "disabled";?>"><a href="#" id="firstPag"><i class="icon-first"></i></a></li>
-		    	<li class="<?php if($this->pagination->pagesStart==$this->pagination->pagesCurrent) echo "disabled";?>"><a href="#" id="prevPag"><i class="icon-previous"></i></a></li>
-			    <?php for($i=1;$i<=$this->pagination->pagesTotal;$i++):?>
-				    <?php
-				    	$statusPagination = '';
-				    	if($this->pagination->pagesCurrent==$i):
-				    		$statusPagination = 'active';
-				    	endif;
-				    ?>
-				    
-				    <li class="<?php echo $statusPagination;?>"><a href="#" id="<?php echo $i;?>" class="pageChange"><?php echo $i;?></a></li>
-			    <?php endfor;?>
-			    <li class="<?php if($this->pagination->pagesTotal==$this->pagination->pagesCurrent) echo "disabled";?>"><a href="#" id="nextPag"><i class="icon-next"></i></a></li>
-			    <li class="<?php if($this->pagination->pagesTotal==$this->pagination->pagesCurrent) echo "disabled";?>"><a href="#" id="lastPag"><i class="icon-last"></i></a></li>
-		    </ul>
-		    
-	    	<div class="showingPaginationtext">
-				<strong><?php echo JText::_('COM_KAJOO_CONTENTS_TOTALRECORDS');?> <?php echo $this->pagination->total;?></strong>
-				<br />
-				<?php echo JText::sprintf('COM_KAJOO_CONTENTS_PAGEXOF', $this->pagination->pagesCurrent,$this->pagination->pagesStop); ?>
-			</div>
-				
-			<div class="clearfix"></div>
-		    <div class="shownumPagination">
-		    	<select name="limit" id="limitKajoo" class="input-mini kajooInput">
-			    	<option value="5" <?php if($this->pagination->limit==5) echo 'selected="selected"';?>>5</option>
-			    	<option value="10" <?php if($this->pagination->limit==10) echo 'selected="selected"';?>>10</option>
-			    	<option value="20" <?php if($this->pagination->limit==20) echo 'selected="selected"';?>>20</option>
-			    	<option value="50" <?php if($this->pagination->limit==50) echo 'selected="selected"';?>>50</option>	
-			    	<option value="100" <?php if($this->pagination->limit==100) echo 'selected="selected"';?>>100</option>	    		    		    	
-		    	</select>
-		    	<input type="hidden" id="totalPages" value="<?php echo $this->pagination->pagesTotal;?>">
-		    	<input type="hidden" name="scroll_on_reload" id="scroll_on_reload" value="<?php echo $scroll_on_reload;?>">
-	
+		<?php if($this->pagination->pagesTotal > 20): ?> 
+			<div class="pagination pagination-large pagination-centered">
+			    <ul>
+			    	<li class="<?php if($this->pagination->pagesStart==$this->pagination->pagesCurrent) echo "disabled";?>"><a href="#" id="firstPag"><i class="icon-first"></i></a></li>
+			    	<li class="<?php if($this->pagination->pagesStart==$this->pagination->pagesCurrent) echo "disabled";?>"><a href="#" id="prevPag"><i class="icon-previous"></i></a></li>
+				    <?php for($i=1;$i<=$this->pagination->pagesTotal;$i++):?>
+					    <?php
+					    	$statusPagination = '';
+					    	if($this->pagination->pagesCurrent==$i):
+					    		$statusPagination = 'active';
+					    	endif;
+					    ?>
+					    
+					    <li class="<?php echo $statusPagination;?>"><a href="#" id="<?php echo $i;?>" class="pageChange"><?php echo $i;?></a></li>
+				    <?php endfor;?>
+				    <li class="<?php if($this->pagination->pagesTotal==$this->pagination->pagesCurrent) echo "disabled";?>"><a href="#" id="nextPag"><i class="icon-next"></i></a></li>
+				    <li class="<?php if($this->pagination->pagesTotal==$this->pagination->pagesCurrent) echo "disabled";?>"><a href="#" id="lastPag"><i class="icon-last"></i></a></li>
+			    </ul>
+			    
+		    	<div class="showingPaginationtext">
+					<strong><?php echo JText::_('COM_KAJOO_CONTENTS_TOTALRECORDS');?> <?php echo $this->pagination->total;?></strong>
+					<br />
+					<?php echo JText::sprintf('COM_KAJOO_CONTENTS_PAGEXOF', $this->pagination->pagesCurrent,$this->pagination->pagesStop); ?>
+				</div>
+					
 				<div class="clearfix"></div>
-	    	</div>
-	    </div>
+			    <div class="shownumPagination">
+			    	<select name="limit" id="limitKajoo" class="input-mini kajooInput">
+				    	<option value="5" <?php if($this->pagination->limit==5) echo 'selected="selected"';?>>5</option>
+				    	<option value="10" <?php if($this->pagination->limit==10) echo 'selected="selected"';?>>10</option>
+				    	<option value="20" <?php if($this->pagination->limit==20) echo 'selected="selected"';?>>20</option>
+				    	<option value="50" <?php if($this->pagination->limit==50) echo 'selected="selected"';?>>50</option>	
+				    	<option value="100" <?php if($this->pagination->limit==100) echo 'selected="selected"';?>>100</option>	    		    		    	
+			    	</select>
+			    	<input type="hidden" id="totalPages" value="<?php echo $this->pagination->pagesTotal;?>">
+			    	<input type="hidden" name="scroll_on_reload" id="scroll_on_reload" value="<?php echo $scroll_on_reload;?>">
+		
+					<div class="clearfix"></div>
+		    	</div>
+		    </div>
+		<?php endif; ?> 
 	    
 	
 	 <div class="clearfix"></div>

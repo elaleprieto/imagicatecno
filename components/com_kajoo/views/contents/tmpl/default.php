@@ -49,8 +49,16 @@ else:
 	$secSpan = 3;
 	$secSpan = 3;
 endif;
-	
 ?>
+
+<?php # Se verifica si está seteada una delegación y se setea una variable con la delegación buscada y se oculta el buscador ?>
+<script language="JavaScript">
+	var delegacion = false;
+	<?php if(isset($_GET['delegacion'])): ?>
+		var delegacion = '<?php echo $_GET['delegacion'] ?>';
+		<?php $positions[0] = 'empty' ?>
+	<?php endif; ?>
+</script> 
 
 <div class="colsKajoo row-flexible" id="topColsKajoo">
 
