@@ -127,30 +127,11 @@ class JModelList extends JModelLegacy
 			$query = $this->_getListQuery(2);
 		elseif(strpos($_SERVER["HTTP_REFERER"], 'radio')):
 			$query = $this->_getListQuery(5);
-		// elseif(strpos($_SERVER["HTTP_REFERER"], 'delegacion')):
-			// $url = $_SERVER["HTTP_REFERER"];
-			// $pos = strrpos($url, 'delegacion');
-			// $delegacion = substr($url, $pos+11);
-			// $query = $this->_getListQuery(0, $delegacion);
-		//elseif(isset($_GET["delegacion"])):
-			// JFactory::getApplication()->enqueueMessage(isset($_GET["delegacion"]));
-			// JFactory::getApplication()->enqueueMessage($_GET["delegacion"]);
-			// $url = $_SERVER["HTTP_REFERER"];
-			// $pos = strrpos($url, 'delegacion');
-			// $delegacion = substr($url, $pos+11);
-			// $query = $this->_getListQuery(0, $delegacion);
-			// $query = $this->_getListQuery(0, $_GET["delegacion"]);
-			// $query = $this->_getListQuery(0, trim($_GET["delegacion"]));
-			
-			// $_SESSION['delegacion'] = 'unlesperanza';
-			// $_SESSION['delegacion'] = trim($_GET['delegacion']);
-			// JFactory::getApplication()->enqueueMessage(var_dump($query));
-		// elseif(isset($_SESSION['delegacion'])):
-			// // $query = $this->_getListQuery(0, 'unlesperanza');
-			// // $query = $this->_getListQuery(0, trim($_SESSION['delegacion']));
-			// $d = trim($_SESSION['delegacion']);
-			// JFactory::getApplication()->enqueueMessage($_SESSION['delegacion']);
-			// $query = $this->_getListQuery(0, $d);
+		elseif(strpos($_SERVER["HTTP_REFERER"], 'delegacion')):
+			$url = $_SERVER["HTTP_REFERER"];
+			$pos = strrpos($url, 'delegacion');
+			$delegacion = substr($url, $pos+11);
+			$query = $this->_getListQuery(0, $delegacion);
 		else:
 			$query = $this->_getListQuery(0);
 		endif;
@@ -164,6 +145,7 @@ class JModelList extends JModelLegacy
 			$this->setError($e->getMessage());
 			return false;
 		}
+		
 
 		// Add the items to the internal cache.
 		$this->cache[$store] = $items;

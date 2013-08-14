@@ -20,9 +20,6 @@ function loadData()
 	
 	var searchText = $('input#tableSearchButton').val();
 	var partnerValue = $('select#partner').val();
-	if(delegacion) {
-		searchText = delegacion;
-	}
 	
 	// Get the categories
 	var categoriesArray = ['all'];
@@ -59,8 +56,7 @@ function loadData()
 				 'limitstart':limitstart,
 				 'filters' : fieldsArray
 				 }
-
-
+console.log(data);
 	$.ajax({
         type: "POST",
         url: url,
@@ -72,7 +68,6 @@ function loadData()
             $('div#tableData').html('<div id="loadingKajoo"></div>');
         },                          
         success: function(data){
-			// console.log(data);
         	$(".kajooInput").prop('disabled', false);
 
         	$('div#tableData').html('');
@@ -90,7 +85,7 @@ function loadData()
 				{
 					var partnerName = $("#partner :selected").text();
 					var title = $('.kajooAddWishlist#kajooID'+entryId).attr('title');
-					title = title+' <span class="titwishlikid">'+partnerName+" - "+entryId+'</span>';
+					title = title+' <span class="titwishlikid">'+partnerName+'</span>';
 					
 					
 					list.add(title); 								
@@ -106,11 +101,11 @@ function loadData()
 				e.preventDefault();
 				
 			});
-				  // var scroll_on_reload = $('input#scroll_on_reload').val();
-				  // if(scroll_on_reload==1)
-				  // {
-					// $.scrollTo('#topColsKajoo',400);	  
-				  // }
+				  var scroll_on_reload = $('input#scroll_on_reload').val();
+				  if(scroll_on_reload==1)
+				  {
+					$.scrollTo('#topColsKajoo',400);	  
+				  }
 
       }                         
         
@@ -160,7 +155,7 @@ function loadCats()
 				(
 				    function (e) 
 				    {
-				 
+					    unselectAllCats();
 				        var hasclass = $(this).parent().hasClass('active');
 				        var id =  $(this).parent().attr("id");
 				        
@@ -496,92 +491,6 @@ return {
 
 
 $(document).ready(function() {
-	
-
-
-
-/*      
-$('#tableSearchButton').typeahead({
-    source: function (query, process) {
-        return $.get('index.php?option=com_kajoo&controller=contents&task=contents.gettypeHead&format=raw&tmpl=component', { query: query }, function (data) {
-            return process(data);
-        });
-    }
-});
-*/
-
-/*var mySource = [{ id: 1, name: 'Terry'}, { id: 2, name: 'Mark'}, { id: 3, name: 'Jacob'}];
-
-$('#tableSearchButton').typeahead({
-    ajax: 'index.php?option=com_kajoo&controller=contents&task=contents.gettypeHead&format=raw&tmpl=component'
-});
-*/
-
-$('#reqinfo').validate({
-    rules: {
-      name: {
-        minlength: 2,
-        required: true
-      },
-      company: {
-        minlength: 2,
-        required: true
-      },
-      email: {
-        required: true,
-        email: true
-      }
-    },
-    highlight: function(label) {
-    	$(label).closest('.control-group').addClass('error');
-    },
-    success: function(label) {
-    	label
-    		.text('OK!').addClass('valid')
-    		.closest('.control-group').addClass('success');
-    },
-    submitHandler: function(form) {
-		 
-		  	var $inputs = $('#reqinfo :input');
-		
-		    // not sure if you wanted this, but I thought I'd add it.
-		    // get an associative array of just the values.
-		    var values = {};
-		    $inputs.each(function() {
-		        values[this.name] = $(this).val();
-		   
-		    });
-		    var list = new cookieList("wishlist");
-		    var items = list.items();
-		    values['wishlist'] = items;
-
-		    // console.log(values);
-	    	var url = "index.php?option=com_kajoo&controller=contents&task=contents.sendRequest&format=raw";
-	    	$.ajax({
-		        type: "POST",
-		        url: url,
-		        data: values,
-		        cache: false,
-		        beforeSend: function(){
-		        },                          
-		        success: function(data){
-		        	alert(data);
-		           
-		        	
-		      }                         
-		        
-		     });
-		  return false;
-   
-    }
-  });
-  
-    $('#myModal').modal({
-	    keyboard: false,
-	    show:false,
-	    backdrop:false
-    })
-
    
   	$('input#tableSearchButton').val($.cookie('kajoo_valueSearch'));
   	$('select#partner').val($.cookie('kajoo_partner'));
@@ -615,7 +524,7 @@ $('#reqinfo').validate({
 	selectAllCats();
 	loadData();
 	firstLoadCat();
-	// loadCats();
+	loadCats();
 	
 	toggleSubmitMoreInfo();
 });
