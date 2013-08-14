@@ -20,6 +20,9 @@ function loadData()
 	
 	var searchText = $('input#tableSearchButton').val();
 	var partnerValue = $('select#partner').val();
+	if(delegacion) {
+		searchText = delegacion;
+	}
 	
 	// Get the categories
 	var categoriesArray = ['all'];
