@@ -76,7 +76,7 @@ class KajooModelTable extends JModelList {
         parent::populateState();
     }
     
-    public function filterKaltura($partnerId, $mediaType = 0)
+    public function filterKaltura($partnerId, $mediaType = 0, $delegacion = null)
 	// Returns all the fields filtered iin the API
 	{
 		$search = $this->getState('filter.searchText');
@@ -88,7 +88,8 @@ class KajooModelTable extends JModelList {
 		
 		$search = trim($search);
 		
-		
+		if($delegacion)
+			$search = trim($delegacion);
 
 		
 		$filter->freeText = $search;
@@ -256,7 +257,7 @@ class KajooModelTable extends JModelList {
         
 
     }
-    protected function getListQuery($mediaType = 2) {
+    protected function getListQuery($mediaType = 2, $delegacion = null) {
         // Create a new query object.
 
         $db = $this->getDbo();
@@ -272,7 +273,7 @@ class KajooModelTable extends JModelList {
 	    	$availablePartners = KajooHelper::getPartnersList();
 	    	$filtered_results_all_filter_array = array();
 	    	foreach($availablePartners as $key=>$partner):
-	    		$filtered_results_all[$key] = $this->filterKaltura($partner->id, $mediaType);
+	    		$filtered_results_all[$key] = $this->filterKaltura($partner->id, $mediaType, $delegacion);
 	    		$filtered_results_all_filter_array[] = $filtered_results_all[$key]->filter_search;
 	    	endforeach;
 	    	
@@ -322,7 +323,7 @@ class KajooModelTable extends JModelList {
         return $query;
     }
 
-	protected function _getListQuery($mediaType = 0)
+	protected function _getListQuery($mediaType = 0, $delegacion = null)
 	{
 		// Capture the last store id used.
 		static $lastStoreId;
@@ -334,7 +335,7 @@ class KajooModelTable extends JModelList {
 		if ($lastStoreId != $currentStoreId || empty($this->query))
 		{
 			$lastStoreId = $currentStoreId;
-			$this->query = $this->getListQuery($mediaType);
+			$this->query = $this->getListQuery($mediaType, $delegacion);
 		}
 
 		return $this->query;
