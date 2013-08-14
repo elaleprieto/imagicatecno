@@ -67,7 +67,6 @@ try
         $coordinador = $xml->Coordinador;
         $ciudad = $xml->Ciudad;
         $provincia = $xml->Provincia;
-        $pdf = $xml->PDF;
     }
 		
     // else{
@@ -148,14 +147,12 @@ catch(Exception $ex)
 		<?php 
 		# Si el mediaType se corresponde con Imagen, se verifica si tiene enlace
 		elseif($this->item->kaltura_video->mediaType == 2): 
-			// if($this->item->kaltura_video->description): 
-			if($pdf): 
+			if($this->item->kaltura_video->description): 
 		?>  
 				<!-- <a href="<?php //echo $this->item->kaltura_video->description ?>" target="_blank"> -->
 					<!-- <img src="<?php //echo $this->item->kaltura_video->thumbnailUrl ?>" /> -->
 				<!-- </a> -->
-				<?php //echo $this->item->kaltura_video->description ?> 
-				<?php echo $pdf ?> 
+				<?php echo $this->item->kaltura_video->description ?> 
 			<?php
 			# Si  el mediaType se corresponde con Imagen y no tiene enlace asociado, se deja la imagen sin enlace...
 			else:
@@ -207,32 +204,36 @@ catch(Exception $ex)
 			<ul class="itemListDetails">
 				<li>
 					<span class="tit_itemList">Delegación</span> 
-					<?php echo $nombre ?>
+					<strong><?php echo $nombre ?></strong>
 				</li>
-				<li>
+			<!--	<li>
 					<span class="tit_itemList">Coordinador</span> 
 					<?php echo $coordinador ?>
-				</li>
-				<li>
+				</li>-->
+		<!--	<li>
 					<span class="tit_itemList">Ciudad</span> 
 					<?php echo $ciudad ?>
 				</li>
 				<li>
 					<span class="tit_itemList">Provincia</span> 
 					<?php echo $provincia ?>
+				</li>-->
+				<li>
+					<span class="tit_itemList">Ciudad</span> 
+					<?php echo $ciudad.' - '.$provincia ?>
 				</li>
 				<li>
 					<span class="tit_itemList"><?php echo JText::_('COM_KAJOO_ITEMCONTENT_CREATED');?></span> 
 					<?php echo date('d/m/Y H:i', $this->item->kaltura_video->createdAt) ?>
 				</li>
-				<li>
+		<!--	<li>
 					<span class="tit_itemList"><?php echo JText::_('COM_KAJOO_ITEMCONTENT_UPDATED');?></span> 
 					<?php echo date('d/m/Y H:i', $this->item->kaltura_video->updatedAt) ?>
 				</li>
 				<li><span class="tit_itemList"><?php echo JText::_('COM_KAJOO_ITEMCONTENT_LENGTH');?></span> <?php echo KajooHelper::formatTime($this->item->kaltura_video->msDuration);?></li>
 				<li><span class="tit_itemList"><?php echo JText::_('COM_KAJOO_ITEMCONTENT_VIEWS');?></span> <?php echo $this->item->kaltura_video->views;?></li>
 				<li><span class="tit_itemList"><?php echo JText::_('COM_KAJOO_ITEMCONTENT_PLAYS');?></span> <?php echo $this->item->kaltura_video->plays;?></li>
-				
+			-->	
 				<?php if($this->item->kaltura_video->categories!=''): ?>
 					<li><span class="tit_itemList"><?php echo JText::_('COM_KAJOO_ITEMCONTENT_CATEGORIES');?></span> <?php echo $this->item->kaltura_video->categories;?></li>
 				<?php endif;?>
