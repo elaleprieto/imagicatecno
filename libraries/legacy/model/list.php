@@ -127,6 +127,11 @@ class JModelList extends JModelLegacy
 			$query = $this->_getListQuery(2);
 		elseif(strpos($_SERVER["HTTP_REFERER"], 'radio')):
 			$query = $this->_getListQuery(5);
+		elseif(strpos($_SERVER["HTTP_REFERER"], 'delegacion')):
+			$url = $_SERVER["HTTP_REFERER"];
+			$pos = strrpos($url, 'delegacion');
+			$delegacion = substr($url, $pos+11);
+			$query = $this->_getListQuery(0, $delegacion);
 		else:
 			$query = $this->_getListQuery(0);
 		endif;
