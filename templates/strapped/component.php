@@ -28,7 +28,7 @@ $color = $this->params->get('templatecolor');
 
 </head>
 <body style="background:#fff; padding:0;">
-<div class="container">
+<div class="container-fluid">
 	<div class="row">
 		<jdoc:include type="message" />
 		<jdoc:include type="component" />
