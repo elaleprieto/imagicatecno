@@ -173,7 +173,11 @@ class KajooHelper
 			
 			try
 			{
-				$results = $kClient->media->listAction($filter);
+				$pager = new KalturaFilterPager();
+				$pager->pageSize = 1000;
+				$pager->pageIndex = 1;
+				$results = $kClient->media->listAction($filter, $pager);
+				// $results = $kClient->media->listAction($filter);
 			}
 			
 			catch(Exception $ex)

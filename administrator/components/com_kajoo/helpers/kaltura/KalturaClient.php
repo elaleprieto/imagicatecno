@@ -2371,6 +2371,11 @@ class KalturaMediaService extends KalturaServiceBase
 	function listAction(KalturaMediaEntryFilter $filter = null, KalturaFilterPager $pager = null)
 	{
 		$kparams = array();
+		
+		// $pager = new KalturaFilterPager();
+		// $pager->pageSize = 1000;
+		// $pager->pageIndex = 1;
+		
 		if ($filter !== null)
 			$this->client->addParam($kparams, "filter", $filter->toParams());
 		if ($pager !== null)
