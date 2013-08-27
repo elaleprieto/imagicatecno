@@ -23,6 +23,8 @@ class ChronoFormsInputSubmit{
 								'container_id' => 0,
 								'back_button_value' => 'Back',
 								'reset_button_value' => 'Reset',
+								'back_button_class' => '',
+								'reset_button_class' => '',
 								'input_value' => 'Submit');
 		}
 		return array('element_params' => $element_params);
@@ -40,6 +42,8 @@ class ChronoFormsInputSubmit{
 		$formcontent_item_array['reset_button'] = $formdata_element[$field_header.'_reset_button'];
 		$formcontent_item_array['back_button_value'] = $formdata_element[$field_header.'_back_button_value'];
 		$formcontent_item_array['reset_button_value'] = $formdata_element[$field_header.'_reset_button_value'];
+		$formcontent_item_array['back_button_class'] = $formdata_element[$field_header.'_back_button_class'];
+		$formcontent_item_array['reset_button_class'] = $formdata_element[$field_header.'_reset_button_class'];
 		$formcontent_item_array['value'] = $formdata_element[$field_header.'_input_value'];
 		$formcontent_item_array['type'] = $formdata_element['type'];
 		return $formcontent_item_array;

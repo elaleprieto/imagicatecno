@@ -36,10 +36,16 @@ class CfactionDbRecordLoader{
 			if(empty($model_id)){
 				$model_id = $model_id_sub;
 			}
+			if(!empty($where)){
+				$where = " WHERE ".$where;
+			}else{
+				$this->events['nodata'] = 1;
+				return;
+			}
 			//add a copy of the qury to the debug
-			$form->debug['db_record_loader'][] = "SELECT * FROM `".$table_name."` AS `".$model_id."` WHERE ".$where;
+			$form->debug['db_record_loader'][] = "SELECT * FROM `".$table_name."` AS `".$model_id."`".$where;
 			//run the query
-			$database->setQuery("SELECT * FROM `".$table_name."` AS `".$model_id."` WHERE ".$where);
+			$database->setQuery("SELECT * FROM `".$table_name."` AS `".$model_id."`".$where);
 			$data = $database->loadAssoc();
 			if(!is_array($data)){
 				$data = array();

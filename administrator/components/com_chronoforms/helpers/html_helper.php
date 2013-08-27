@@ -138,7 +138,7 @@ class HtmlHelper {
 	    			$fieldoptions['after'] = '';
 	    		}
 	    		//$tiplink = '<a href="#" title="'.$fieldoptions['label']['text'].'::'.$fieldoptions['tooltip'].'">?</a>';
-				$tiplink = '<a href="#">?</a>';
+				$tiplink = '<a href="#" onclick="return false;">?</a>';
 				$fieldoptions['after'] .= '<div title="'.$fieldoptions['label']['text'].'" rel="'.nl2br($fieldoptions['tooltip']).'" class="tooltipimg">'.$tiplink.'</div>';
     		}
 			unset($fieldoptions['tooltip']);
@@ -314,17 +314,17 @@ class HtmlHelper {
 					unset($tag['button_align']);
 				}
 				foreach($tag as $k => $v){
-					if(in_array($k, array('reset_button', 'reset_button_value', 'back_button', 'back_button_value'))){
+					if(in_array($k, array('reset_button', 'reset_button_value', 'reset_button_class', 'back_button', 'back_button_value', 'back_button_class'))){
 						continue;
 					}
 					$output .= ' '.$k.'="'.$v.'"';
 				}
 				$output .= ' />'."\n";
 				if(isset($tag['reset_button']) && (bool)$tag['reset_button'] === true){
-					$output .= "&nbsp;<input type='reset' name='reset' value='".$tag['reset_button_value']."' />";
+					$output .= "&nbsp;<input type='reset' name='reset' value='".$tag['reset_button_value']."' class='".$tag['reset_button_class']."' />";
 				}
 				if(isset($tag['back_button']) && (bool)$tag['back_button'] === true){
-					$output .= "&nbsp;<input type='button' name='back' value='".$tag['back_button_value']."' onclick='history.back()' />";
+					$output .= "&nbsp;<input type='button' name='back' value='".$tag['back_button_value']."' class='".$tag['back_button_class']."' onclick='history.back()' />";
 				}				
 				unset($fieldoptions['label']);
 				break;
@@ -635,13 +635,13 @@ class HtmlHelper {
 						$container_open = "\n".'<div class="ccms_form_element">
 							<?php
 								jimport("joomla.html.html.sliders");
-								echo JHtmlTabs::start("cf_container_'.$tag['wf_key'].'");
+								echo JHtmlSliders::start("cf_container_'.$tag['wf_key'].'");
 							?>'."\n";
-						$container_close = "\n".'<?php echo JHtmlTabs::end(); ?>
+						$container_close = "\n".'<?php echo JHtmlSliders::end(); ?>
 							<div class="clear"></div>
 						</div>'."\n";
 					}else if($tag['container_type'] == 'slider'){
-						$container_open = "\n".'<?php echo JHtmlTabs::panel("'.$tag['area_label'].'", "cf_container_'.$tag['wf_key'].'"); ?>'."\n";
+						$container_open = "\n".'<?php echo JHtmlSliders::panel("'.$tag['area_label'].'", "cf_container_'.$tag['wf_key'].'"); ?>'."\n";
 						$container_close = "\n".''."\n";
 					}
 				}

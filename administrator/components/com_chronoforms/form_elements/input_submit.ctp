@@ -11,6 +11,8 @@
 	<?php echo $HtmlHelper->input('chronofield[{n}][input_submit_{n}_reset_button]', array('type' => 'hidden', 'id' => 'input_submit_{n}_reset_button', 'value' => $element_params['reset_button'])); ?>
 	<?php echo $HtmlHelper->input('chronofield[{n}][input_submit_{n}_back_button_value]', array('type' => 'hidden', 'id' => 'input_submit_{n}_back_button_value', 'value' => $element_params['back_button_value'])); ?>
 	<?php echo $HtmlHelper->input('chronofield[{n}][input_submit_{n}_reset_button_value]', array('type' => 'hidden', 'id' => 'input_submit_{n}_reset_button_value', 'value' => $element_params['reset_button_value'])); ?>
+	<?php echo $HtmlHelper->input('chronofield[{n}][input_submit_{n}_back_button_class]', array('type' => 'hidden', 'id' => 'input_submit_{n}_back_button_class', 'value' => $element_params['back_button_class'])); ?>
+	<?php echo $HtmlHelper->input('chronofield[{n}][input_submit_{n}_reset_button_class]', array('type' => 'hidden', 'id' => 'input_submit_{n}_reset_button_class', 'value' => $element_params['reset_button_class'])); ?>
 	<?php echo $HtmlHelper->input('chronofield[{n}][input_submit_{n}_multiline_start]', array('type' => 'hidden', 'id' => 'input_submit_{n}_multiline_start', 'value' => $element_params['multiline_start'])); ?>
 	<?php echo $HtmlHelper->input('chronofield[{n}][input_submit_{n}_multiline_add]', array('type' => 'hidden', 'id' => 'input_submit_{n}_multiline_add', 'value' => $element_params['multiline_add'])); ?>
 	
@@ -32,6 +34,8 @@
 		<?php echo $HtmlHelper->input('input_submit_{n}_back_button_value_config', array('type' => 'text', 'label' => 'Back Button Text', 'class' => 'small_input', 'value' => '')); ?>
 		<?php echo $HtmlHelper->input('input_submit_{n}_reset_button_config', array('type' => 'checkbox', 'label' => 'Add Reset Button', 'class' => 'small_input', 'value' => '1', 'rule' => "bool")); ?>
 		<?php echo $HtmlHelper->input('input_submit_{n}_reset_button_value_config', array('type' => 'text', 'label' => 'Reset Button Text', 'class' => 'small_input', 'value' => '')); ?>
+		<?php echo $HtmlHelper->input('input_submit_{n}_back_button_class_config', array('type' => 'text', 'label' => 'Back Button class', 'class' => 'small_input', 'value' => '')); ?>
+		<?php echo $HtmlHelper->input('input_submit_{n}_reset_button_class_config', array('type' => 'text', 'label' => 'Reset Button class', 'class' => 'small_input', 'value' => '')); ?>
 		
 	<?php echo $PluginTabsHelper->tabEnd(); ?>
 	<?php echo $PluginTabsHelper->tabStart('other'); ?>

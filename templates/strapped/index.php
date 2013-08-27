@@ -216,7 +216,12 @@ endif;
 			<!--<div id="sidebar" class="span<?php echo $leftcolgrid;?>">-->
 			<!-- Cambio el ancho de arriba, configurable por sapn2-->
 			<div id="sidebar" class="span2">
-				<jdoc:include type="modules" name="left" style="xhtml" />
+				<div class="row-fluid">				
+					<jdoc:include type="modules" name="left" style="xhtml" />
+				</div>
+				<div class="row-fluid">
+					<jdoc:include type="modules" name="left-low" style="xhtml" />
+				</div>
 			</div>
 			<?php endif; ?>
 			<!-- Component -->
@@ -284,7 +289,8 @@ endif;
     ================================================== --> 
 <!-- Placed at the end of the document so the pages load faster --> 
 <script src="<?php echo $this->baseurl ?>/templates/<?php echo $this->template; ?>/js/jquery.js"></script> 
-<script src="<?php echo $this->baseurl ?>/templates/<?php echo $this->template; ?>/js/bootstrap.min.js"></script> 
+<!--<script src="<?php echo $this->baseurl ?>/templates/<?php echo $this->template; ?>/js/bootstrap.min.js"></script>-->
+<script src="<?php echo $this->baseurl ?>/templates/<?php echo $this->template; ?>/js/bootstrap.js"></script> 
 <script src="<?php echo $this->baseurl ?>/templates/<?php echo $this->template; ?>/js/application.js"></script> 
 <script src="<?php echo $this->baseurl ?>/templates/<?php echo $this->template; ?>/js/prettify.js"></script>
 <script>
@@ -299,6 +305,20 @@ endif;
 </script>
 <script type="text/javascript">
         jQuery.noConflict();
+</script>
+
+/*Script propio para resolver el conflicto de mooTools con Jquery para carousel*/
+<script type="text/javascript" >
+	if (typeof jQuery != 'undefined' && typeof MooTools != 'undefined' ) {
+		// both present , kill jquery slide for carousel class
+		(function($) { 
+       $(document).ready(function(){
+        $('.carousel').each(function(index, element) {
+                $(this)[index].slide = null;
+               });
+         });
+ })(jQuery);
+}
 </script>
 </body>
 </html>

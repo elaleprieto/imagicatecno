@@ -25,6 +25,9 @@ class CfactionSessionToData{
 			$session_ns = 'default';
 		}
 		$form->data = array_merge($form->data, $session->get('_chronoform_data_'.$session_key, array(), $session_ns));
+		if(isset($form->data['_FORM_FILES_'])){
+			$form->files = array_merge($form->data['_FORM_FILES_'], $form->files);
+		}
 		//clear the session if the clear option is set to yes
 		if((int)$params->get('clear', 0) == 1){
 			$session->clear('_chronoform_data_'.$session_key, $session_ns);

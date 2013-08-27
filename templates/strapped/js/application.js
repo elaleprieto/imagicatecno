@@ -92,6 +92,10 @@
     // carousel demo
     $('#myCarousel').carousel()
 
+    // carousel demo
+    $('#miCarousel').carousel()	
+    
+
     // javascript build logic
     var inputsComponent = $("#components.download input")
       , inputsPlugin = $("#plugins.download input")

@@ -24,6 +24,7 @@ class CfactionDataToSession{
 		if(empty($session_ns)){
 			$session_ns = 'default';
 		}
+		$form->data['_FORM_FILES_'] = $form->files;
 		if($session->has('_chronoform_data_'.$session_key, $session_ns)){
 			$stored = $session->get('_chronoform_data_'.$session_key, array(), $session_ns);
 			if(!empty($stored) && is_array($stored) && (int)$params->get('merge', 0) == 1){
