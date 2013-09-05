@@ -1,5 +1,4 @@
 <?php 
-<?php
 /**
  * @version     0.1
  * @package     com_kajoo

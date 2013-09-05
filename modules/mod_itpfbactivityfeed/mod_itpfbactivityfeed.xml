@@ -1,0 +1,224 @@
+<?xml version="1.0" encoding="utf-8"?>
+	<extension type="module" version="3.0" client="site" method="upgrade">
+	<name>MOD_ITPFBACTIVITYFEED</name>
+	<author>Todor Iliev</author>
+	<creationDate>April, 2010</creationDate>
+	<copyright>Copyright (C) 2010 Todor Iliev ( ITPrism.com )</copyright>
+	<license>http://www.gnu.org/copyleft/gpl.html</license>
+	<authorEmail>todor@itprism.com</authorEmail>
+	<authorUrl>http://itprism.com</authorUrl>
+	<version>1.3</version>
+	<description>MOD_ITPFBACTIVITYFEED_DESC</description>
+	
+	<languages folder="language">
+		<language tag="en-GB">en-GB/en-GB.mod_itpfbactivityfeed.ini</language>
+		<language tag="en-GB">en-GB/en-GB.mod_itpfbactivityfeed.sys.ini</language>
+	</languages>  
+		
+	<help url="MOD_ITPFBACTIVITYFEED_HELP_URL"/>
+	
+	<files>
+		<filename module="mod_itpfbactivityfeed">mod_itpfbactivityfeed.php</filename>
+		<filename>index.html</filename>
+		<filename>README.md</filename>
+		<folder>tmpl</folder>
+	</files>
+
+	<config>
+		<fields name="params">
+			<fieldset name="basic">
+				<field name="fbDomain" type="text" default="" size="80" label="MOD_ITPFBACTIVITYFEED_DOMAIN" description="MOD_ITPFBACTIVITYFEED_DOMAIN_DESC" />        
+				<field name="fbRendering" type="list" default="2" label="MOD_ITPFBACTIVITYFEED_RENDERING" description="MOD_ITPFBACTIVITYFEED_RENDERING_DESC" >
+				   <option value="0">iframe</option>
+				   <option value="1">XFBML</option>
+				   <option value="2">HTML5</option>
+				</field>
+				<field name="fbWidth" type="text" default="250" label="MOD_ITPFBACTIVITYFEED_WIDTH" description="MOD_ITPFBACTIVITYFEED_WIDTH_DESC" />
+				<field name="fbHeight" type="text" default="427" label="MOD_ITPFBACTIVITYFEED_HEIGHT" description="MOD_ITPFBACTIVITYFEED_HEIGHT_DESC" />
+				<field name="fbHeader" type="radio" default="1" label="MOD_ITPFBACTIVITYFEED_HEADER" description="MOD_ITPFBACTIVITYFEED_HEADER_DESC" class="btn-group">
+					<option value="0">JHIDE</option>
+					<option value="1">JSHOW</option>
+				</field>
+				<field name="fbColour" type="list" default="light" label="MOD_ITPFBACTIVITYFEED_COLOUR" description="MOD_ITPFBACTIVITYFEED_COLOUR_DESC">
+					<option value="light">MOD_ITPFBACTIVITYFEED_LIGHT</option>
+					<option value="dark">MOD_ITPFBACTIVITYFEED_DARK</option>
+				</field>
+				<field name="fbLinkTarget" type="list" default="_blank" label="MOD_ITPFBACTIVITYFEED_LINK_TARGET" description="MOD_ITPFBACTIVITYFEED_LINK_TARGET_DESC">
+                    <option value="_blank">_blank</option>
+                    <option value="_top">_top</option>
+                    <option value="_parent">_parent</option>
+                </field>
+				<field name="fbFont" type="list" default="" label="MOD_ITPFBACTIVITYFEED_FONT" description="MOD_ITPFBACTIVITYFEED_FONT_DESC">
+					<option value=""></option>
+					<option value="arial">arial</option>
+					<option value="lucida grande">lucida grande</option>
+					<option value="segoe ui">segoe ui</option>
+					<option value="tahoma">tahoma</option>
+					<option value="trebuchet ms">trebuchet ms</option>
+					<option value="verdana">verdana</option>
+				</field>
+				<field name="fbBorderColour" type="text" default="" label="MOD_ITPFBACTIVITYFEED_BORDER_COLOUR" description="MOD_ITPFBACTIVITYFEED_BORDER_COLOUR_DESC" />
+				<field name="fbRecommendation" type="radio" default="0" label="MOD_ITPFBACTIVITYFEED_REC" description="MOD_ITPFBACTIVITYFEED_REC_DESC" class="btn-group">
+					<option value="0">JHIDE</option>
+					<option value="1">JSHOW</option>
+				</field>
+			</fieldset>
+
+            <fieldset name="implementation_options" label="MOD_ITPFBACTIVITYFEED_IMPLEMENTATION_OPTIONS">
+                <field name="fbDynamicLocale" type="radio" default="0" label="MOD_ITPFBACTIVITYFEED_DYN_LOCALE" description="MOD_ITPFBACTIVITYFEED_DYN_LOCALE_DESC" class="btn-group">
+                    <option value="0">JNO</option>
+                    <option value="1">JYES</option>
+                </field>
+                <field name="fbLocale" type="list" default="en_US" label="MOD_ITPFBACTIVITYFEED_LANGUAGE" description="MOD_ITPFBACTIVITYFEED_LANGUAGE_DESC">
+                    <option value="af_ZA">MOD_ITPFBACTIVITYFEED_AF_ZA</option>
+                    <option value="ar_AR">MOD_ITPFBACTIVITYFEED_AR_AR</option>
+                    <option value="ay_BO">MOD_ITPFBACTIVITYFEED_AY_BO</option>
+                    <option value="az_AZ">MOD_ITPFBACTIVITYFEED_AZ_AZ</option>
+                    <option value="be_BY">MOD_ITPFBACTIVITYFEED_BE_BY</option>
+                    <option value="bg_BG">MOD_ITPFBACTIVITYFEED_BG_BG</option>
+                    <option value="bn_IN">MOD_ITPFBACTIVITYFEED_BN_IN</option>
+                    <option value="bs_BA">MOD_ITPFBACTIVITYFEED_BS_BA</option>
+                    <option value="ca_ES">MOD_ITPFBACTIVITYFEED_CA_ES</option>
+                    <option value="ck_US">MOD_ITPFBACTIVITYFEED_CK_US</option>
+                    <option value="cs_CZ">MOD_ITPFBACTIVITYFEED_CS_CZ</option>
+                    <option value="cy_GB">MOD_ITPFBACTIVITYFEED_CY_GB</option>
+                    <option value="da_DK">MOD_ITPFBACTIVITYFEED_DA_DK</option>
+                    <option value="de_DE">MOD_ITPFBACTIVITYFEED_DE_DE</option>
+                    <option value="el_GR">MOD_ITPFBACTIVITYFEED_EL_GR</option>
+                    <option value="en_GB">MOD_ITPFBACTIVITYFEED_EN_GB</option>
+                    <option value="en_PI">MOD_ITPFBACTIVITYFEED_EN_PI</option>
+                    <option value="en_UD">MOD_ITPFBACTIVITYFEED_EN_UD</option>
+                    <option value="en_US">MOD_ITPFBACTIVITYFEED_EN_US</option>
+                    <option value="eo_EO">MOD_ITPFBACTIVITYFEED_EO_EO</option>
+                    <option value="es_CL">MOD_ITPFBACTIVITYFEED_ES_CL</option>
+                    <option value="es_CO">MOD_ITPFBACTIVITYFEED_ES_CO</option>
+                    <option value="es_ES">MOD_ITPFBACTIVITYFEED_ES_ES</option>
+                    <option value="es_LA">MOD_ITPFBACTIVITYFEED_ES_LA</option>
+                    <option value="es_MX">MOD_ITPFBACTIVITYFEED_ES_MX</option>
+                    <option value="es_VE">MOD_ITPFBACTIVITYFEED_ES_MX</option>
+                    <option value="et_EE">MOD_ITPFBACTIVITYFEED_ET_EE</option>
+                    <option value="eu_ES">MOD_ITPFBACTIVITYFEED_EU_ES</option>
+                    <option value="fa_IR">MOD_ITPFBACTIVITYFEED_FA_IR</option>
+                    <option value="fb_LT">MOD_ITPFBACTIVITYFEED_FB_LT</option>
+                    <option value="fi_FI">MOD_ITPFBACTIVITYFEED_FI_FI</option>
+                    <option value="fo_FO">MOD_ITPFBACTIVITYFEED_FO_FO</option>
+                    <option value="fr_CA">MOD_ITPFBACTIVITYFEED_FR_CA</option>
+                    <option value="fr_FR">MOD_ITPFBACTIVITYFEED_FR_FR</option>
+                    <option value="ga_IE">MOD_ITPFBACTIVITYFEED_GA_IE</option>
+                    <option value="gl_ES">MOD_ITPFBACTIVITYFEED_GL_ES</option>
+                    <option value="gn_PY">MOD_ITPFBACTIVITYFEED_GN_PY</option>
+                    <option value="gu_IN">MOD_ITPFBACTIVITYFEED_GU_IN</option>
+                    <option value="he_IL">MOD_ITPFBACTIVITYFEED_HE_IL</option>
+                    <option value="hi_IN">MOD_ITPFBACTIVITYFEED_HI_IN</option>
+                    <option value="hr_HR">MOD_ITPFBACTIVITYFEED_HR_HR</option>
+                    <option value="hu_HU">MOD_ITPFBACTIVITYFEED_HU_HU</option>
+                    <option value="hy_AM">MOD_ITPFBACTIVITYFEED_HY_AM</option>
+                    <option value="id_ID">MOD_ITPFBACTIVITYFEED_ID_ID</option>
+                    <option value="is_IS">MOD_ITPFBACTIVITYFEED_IS_IS</option>
+                    <option value="it_IT">MOD_ITPFBACTIVITYFEED_IT_IT</option>
+                    <option value="ja_JP">MOD_ITPFBACTIVITYFEED_JA_JP</option>
+                    <option value="jv_ID">MOD_ITPFBACTIVITYFEED_JV_ID</option>
+                    <option value="ka_GE">MOD_ITPFBACTIVITYFEED_KA_GE</option>
+                    <option value="kk_KZ">MOD_ITPFBACTIVITYFEED_KK_KZ</option>
+                    <option value="km_KH">MOD_ITPFBACTIVITYFEED_KM_KH</option>
+                    <option value="kn_IN">MOD_ITPFBACTIVITYFEED_KN_IN</option>
+                    <option value="ko_KR">MOD_ITPFBACTIVITYFEED_KO_KR</option>
+                    <option value="ku_TR">MOD_ITPFBACTIVITYFEED_KU_TR</option>
+                    <option value="la_VA">MOD_ITPFBACTIVITYFEED_LA_VA</option>
+                    <option value="li_NL">MOD_ITPFBACTIVITYFEED_LI_NL</option>
+                    <option value="lt_LT">MOD_ITPFBACTIVITYFEED_LT_LT</option>
+                    <option value="lv_LV">MOD_ITPFBACTIVITYFEED_LV_LV</option>
+                    <option value="mg_MG">MOD_ITPFBACTIVITYFEED_MG_MG</option>
+                    <option value="mk_MK">MOD_ITPFBACTIVITYFEED_MK_MK</option>
+                    <option value="ml_IN">MOD_ITPFBACTIVITYFEED_ML_IN</option>
+                    <option value="mn_MN">MOD_ITPFBACTIVITYFEED_MN_MN</option>
+                    <option value="mr_IN">MOD_ITPFBACTIVITYFEED_MR_IN</option>
+                    <option value="ms_MY">MOD_ITPFBACTIVITYFEED_MS_MY</option>
+                    <option value="mt_MT">MOD_ITPFBACTIVITYFEED_MT_MT</option>
+                    <option value="nb_NO">MOD_ITPFBACTIVITYFEED_NB_NO</option>
+                    <option value="ne_NP">MOD_ITPFBACTIVITYFEED_NE_NP</option>
+                    <option value="nl_BE">MOD_ITPFBACTIVITYFEED_NL_BE</option>
+                    <option value="nl_NL">MOD_ITPFBACTIVITYFEED_NL_NL</option>
+                    <option value="nn_NO">MOD_ITPFBACTIVITYFEED_NN_NO</option>
+                    <option value="pa_IN">MOD_ITPFBACTIVITYFEED_PA_IN</option>
+                    <option value="pl_PL">MOD_ITPFBACTIVITYFEED_PL_PL</option>
+                    <option value="ps_AF">MOD_ITPFBACTIVITYFEED_PS_AF</option>
+                    <option value="pt_BR">MOD_ITPFBACTIVITYFEED_PT_BR</option>
+                    <option value="pt_PT">MOD_ITPFBACTIVITYFEED_PT_PT</option>
+                    <option value="qu_PE">MOD_ITPFBACTIVITYFEED_QU_PE</option>
+                    <option value="rm_CH">MOD_ITPFBACTIVITYFEED_RM_CH</option>
+                    <option value="ro_RO">MOD_ITPFBACTIVITYFEED_RO_RO</option>
+                    <option value="ru_RU">MOD_ITPFBACTIVITYFEED_RU_RU</option>
+                    <option value="sa_IN">MOD_ITPFBACTIVITYFEED_SA_IN</option>
+                    <option value="se_NO">MOD_ITPFBACTIVITYFEED_SE_NO</option>
+                    <option value="sk_SK">MOD_ITPFBACTIVITYFEED_SK_SK</option>
+                    <option value="sl_SI">MOD_ITPFBACTIVITYFEED_SL_SI</option>
+                    <option value="so_SO">MOD_ITPFBACTIVITYFEED_SO_SO</option>
+                    <option value="sq_AL">MOD_ITPFBACTIVITYFEED_SQ_AL</option>
+                    <option value="sr_RS">MOD_ITPFBACTIVITYFEED_SR_RS</option>
+                    <option value="sv_SE">MOD_ITPFBACTIVITYFEED_SV_SE</option>
+                    <option value="sw_KE">MOD_ITPFBACTIVITYFEED_SW_KE</option>
+                    <option value="sy_SY">MOD_ITPFBACTIVITYFEED_SY_SY</option>
+                    <option value="ta_IN">MOD_ITPFBACTIVITYFEED_TA_IN</option>
+                    <option value="te_IN">MOD_ITPFBACTIVITYFEED_TE_IN</option>
+                    <option value="tg_TJ">MOD_ITPFBACTIVITYFEED_TG_TJ</option>
+                    <option value="th_TH">MOD_ITPFBACTIVITYFEED_TH_TH</option>
+                    <option value="tl_PH">MOD_ITPFBACTIVITYFEED_TL_PH</option>
+                    <option value="tl_ST">MOD_ITPFBACTIVITYFEED_TL_ST</option>
+                    <option value="tr_TR">MOD_ITPFBACTIVITYFEED_TR_TR</option>
+                    <option value="tt_RU">MOD_ITPFBACTIVITYFEED_TT_RU</option>
+                    <option value="uk_UA">MOD_ITPFBACTIVITYFEED_UK_UA</option>
+                    <option value="ur_PK">MOD_ITPFBACTIVITYFEED_UR_PK</option>
+                    <option value="uz_UZ">MOD_ITPFBACTIVITYFEED_UZ_UZ</option>
+                    <option value="vi_VN">MOD_ITPFBACTIVITYFEED_VI_VN</option>
+                    <option value="xh_ZA">MOD_ITPFBACTIVITYFEED_XH_ZA</option>
+                    <option value="yi_DE">MOD_ITPFBACTIVITYFEED_YI_DE</option>
+                    <option value="zh_CN">MOD_ITPFBACTIVITYFEED_ZH_CN</option>
+                    <option value="zh_HK">MOD_ITPFBACTIVITYFEED_ZH_HK</option>
+                    <option value="zh_TW">MOD_ITPFBACTIVITYFEED_ZH_TW</option>
+                    <option value="zu_ZA">MOD_ITPFBACTIVITYFEED_ZU_ZA</option>
+                </field>
+                
+                <field name="fbActions" type="textarea" default="" rows="5" cols="50" label="MOD_ITPFBACTIVITYFEED_ACTIONS" description="MOD_ITPFBACTIVITYFEED_ACTIONS_DESC" />
+                <field name="fbFilter" type="text" default="" size="80" label="MOD_ITPFBACTIVITYFEED_FILTER" description="MOD_ITPFBACTIVITYFEED_FILTER_DESC" />
+                <field name="fbRef" type="text" default="" size="80" label="MOD_ITPFBACTIVITYFEED_REF" description="MOD_ITPFBACTIVITYFEED_REF_DESC" />
+                <field name="fbAppId" type="text" default="" size="80" label="MOD_ITPFBACTIVITYFEED_APP_ID" description="MOD_ITPFBACTIVITYFEED_APP_ID_DESC" />
+                <field name="fbMaxAge" type="text" default="0" size="80" label="MOD_ITPFBACTIVITYFEED_MAX_AGE" description="MOD_ITPFBACTIVITYFEED_MAX_AGE_DESC" />
+                <field name="fbLoadJsLib" type="radio" default="1" label="MOD_ITPFBACTIVITYFEED_LOAD_JS_LIB" description="MOD_ITPFBACTIVITYFEED_LOAD_JS_LIB_DESC" class="btn-group">
+                    <option value="0">JNO</option>
+                    <option value="1">JYES</option>
+                </field>
+                <field name="fbRootDiv" type="radio" default="1" label="MOD_ITPFBACTIVITYFEED_ROOT" description="MOD_ITPFBACTIVITYFEED_ROOT_DESC" class="btn-group">
+                   <option value="0">JNO</option>
+                   <option value="1">JYES</option>
+                </field>
+            </fieldset>
+
+			<fieldset name="advanced">
+				<field name="moduleclass_sfx" type="text"
+					label="COM_MODULES_FIELD_MODULECLASS_SFX_LABEL"
+					description="COM_MODULES_FIELD_MODULECLASS_SFX_DESC" />
+
+				<field
+                    name="cache"
+                    type="list"
+                    default="1"
+                    label="COM_MODULES_FIELD_CACHING_LABEL"
+                    description="COM_MODULES_FIELD_CACHING_DESC">
+                    <option
+                        value="1">JGLOBAL_USE_GLOBAL</option>
+                    <option
+                        value="0">COM_MODULES_FIELD_VALUE_NOCACHING</option>
+                </field>
+                <field
+                    name="cache_time"
+                    type="text"
+                    default="900"
+                    label="COM_MODULES_FIELD_CACHE_TIME_LABEL"
+                    description="COM_MODULES_FIELD_CACHE_TIME_DESC" />
+                
+			</fieldset>
+		</fields>
+	</config>
+	 
+</extension>

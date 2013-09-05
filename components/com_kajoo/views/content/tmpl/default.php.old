@@ -203,19 +203,9 @@ catch(Exception $ex)
 	
 		<div class="well">
 			<ul class="itemListDetails">
-				<!--<li>
+				<li>
 					<span class="tit_itemList">Delegación</span> 
 					<strong><?php echo $nombre ?></strong>
-					
-				</li>-->
-				<li>
-					<strong><h2><?php echo $nombre ?></h2></strong>
-					<br>
-				</li>
-				<li>
-					<span>
-						<?php echo $this->item->kaltura_video->description ?></br></br>
-					</span>
 				</li>
 			<!--	<li>
 					<span class="tit_itemList">Coordinador</span> 
