@@ -158,7 +158,10 @@ catch(Exception $ex)
 			# Si  el mediaType se corresponde con Imagen y no tiene enlace asociado, se deja la imagen sin enlace...
 			else:
 			?>
-				<img src="<?php echo $this->item->kaltura_video->thumbnailUrl ?>" />
+				<!-- <img src="<?php echo $this->item->kaltura_video->thumbnailUrl ?>" /> -->
+				<!-- <img src="http://cdnbakmi.kaltura.com/p/1/sp/100/thumbnail/entry_id/<?=$this->item->kaltura_video->id?>/width/590" /> -->
+				<!-- <img src="http://cdnbakmi.kaltura.com/p/1483331/sp/148333100/raw/entry_id/<?=$this->item->kaltura_video->id?>/version/100000" /> -->
+				<img src="http://cdnbakmi.kaltura.com/p/1522651/sp/152265100/raw/entry_id/<?=$this->item->kaltura_video->id?>/version/100000" />
 			<?php endif; ?>
 		<?php endif; ?>
 	</div>
